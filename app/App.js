@@ -1,5 +1,3 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -16,7 +14,7 @@ import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 import Register from '@/components/Screen/Auth-Screens/Register';
 
 
-export default function HomeScreen() {
+export default function App() {
     return (
         // <ParallaxScrollView
         //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
