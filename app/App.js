@@ -5,6 +5,16 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import WelcomeScreen from '@/components/Screen/Auth-Screens/Wellcom/Wellcom';
+import NameInputComponent from '@/components/TextInput/TextInput';
+import CreateNewPassword from '@/components/Screen/Auth-Screens/CreateNewPassword';
+import ResetPassword from '@/components/Screen/Auth-Screens/ResetPassword';
+import PasswordChanged from '@/components/Screen/Auth-Screens/PasswordChanged';
+import ForgotPassword from '@/components/Screen/Auth-Screens/ForgotPassword';
+import EnterCodeForgotPassword from '@/components/Screen/Auth-Screens/EnterCodeforForgotPassword';
+import Login from '@/components/Screen/Auth-Screens/Login';
+import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
+import Register from '@/components/Screen/Auth-Screens/Register';
+
 
 export default function HomeScreen() {
     return (
@@ -49,7 +59,15 @@ export default function HomeScreen() {
         //   </ThemedView>
         // </ParallaxScrollView>
 
-        <WelcomeScreen />
+        //<WelcomeScreen />
+        <CreateNewPassword />
+        //<ResetPassword />
+        //<PasswordChanged />
+        //<ForgotPassword />
+        //<EnterCodeForgotPassword />
+        //<Login />
+        //<GoogleLogoIcon />
+        //<Register />
     );
 }
 
