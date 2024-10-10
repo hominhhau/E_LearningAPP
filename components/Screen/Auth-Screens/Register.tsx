@@ -6,10 +6,12 @@ import Button from '@/components/Button/Button';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 
 
-const CreateAccountScreen: React.FC = () => {
+const CreateAccountScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-        <ArrowBack onPress={() => {}} />
+        <ArrowBack onPress={() => {
+        navigation.navigate('Welcome')
+        }} />
     
       <View style={styles.header}>
         <Text style={styles.headerText}>Create Account</Text>
@@ -39,6 +41,7 @@ const CreateAccountScreen: React.FC = () => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
+        onPress={() => {}}
         />
       </View>
   
@@ -125,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   orText: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 16.8,
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   signUpWith: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 16,
     lineHeight: 19.2,
@@ -164,6 +167,7 @@ const styles = StyleSheet.create({
     color: '#222222',
     textAlign: 'center',
     marginTop: 20,
+    
   },
   loginLink: {
     color: '#00bdd6',
