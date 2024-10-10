@@ -9,7 +9,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.headerIcon}>
-                <ArrowBack onPress={() => navigation.goBack()} />
+                <ArrowBack onPress={() => navigation.navigate('Welcome')} />
             </View>
 
             <View style={styles.header}>

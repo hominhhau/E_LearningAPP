@@ -41,7 +41,9 @@ const CreateAccountScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
-        onPress={() => {}}
+        onPress={() => {
+          navigation.navigate('CreateNewPassword')
+        }}
         />
       </View>
   
