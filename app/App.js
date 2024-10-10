@@ -3,6 +3,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import NameInputComponent from '@/components/TextInput/TextInput';
+//import WelcomeScreen from '@/components/Screen/Auth-Screens/Wellcom/Wellcom';
 import CreateNewPassword from '@/components/Screen/Auth-Screens/CreateNewPassword';
 import ResetPassword from '@/components/Screen/Auth-Screens/ResetPassword';
 import PasswordChanged from '@/components/Screen/Auth-Screens/PasswordChanged';
@@ -11,7 +12,13 @@ import EnterCodeForgotPassword from '@/components/Screen/Auth-Screens/EnterCodef
 import Login from '@/components/Screen/Auth-Screens/Login';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 import Register from '@/components/Screen/Auth-Screens/Register';
-
+import LessonCard from '../components/Screen/LearningLessonCart/LessonCart.tsx'
+import LessonNoCard from '../components/Screen/LearningLessonNoCart/LessonNoCart.tsx'
+import CreateAccountScreen from '../components/Screen/Auth-Screens/Register.tsx'
+//08.10.2024
+import TeacherProfile from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile.tsx'
+import BenefitContainer from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Benefit/BenefitContainer.tsx'
+import GeneralTabBar from '../components/Screen/TabBar/GeneralTabBar.tsx'
 
 export default function App() {
     return (
@@ -57,7 +64,7 @@ export default function App() {
         // </ParallaxScrollView>
 
         //<WelcomeScreen />
-        <CreateNewPassword />
+        //<CreateNewPassword />
         //<ResetPassword />
         //<PasswordChanged />
         //<ForgotPassword />
@@ -65,6 +72,11 @@ export default function App() {
         //<Login />
         //<GoogleLogoIcon />
         //<Register />
+        //<LessonNoCard />
+        //<CreateAccountScreen />
+        //<TeacherProfile />
+        //<BenefitContainer />
+        <GeneralTabBar />
     );
 }
 
