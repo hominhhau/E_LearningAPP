@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     title: {
-      fontFamily: 'Lato',
+      fontFamily: 'Lato-Regular',
       fontWeight: 'bold',
       fontSize: 24,
       lineHeight: 28.8,
       color: '#00bed6',
     },
     subtitle: {
-      fontFamily: 'Lato',
+      fontFamily: 'Lato-Regular',
       fontWeight: '400',
       fontSize: 14,
       lineHeight: 16.8,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
       marginBottom: 24,
     },
     label: {
-      fontFamily: 'Lato',
+      fontFamily: 'Lato-Regular',
       fontWeight: '400',
       fontSize: 16,
       lineHeight: 19.2,
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     },
     input: {
       flex: 1,
-      fontFamily: 'Lato',
+      fontFamily: 'Lato-Regular',
       fontWeight: '400',
       fontSize: 12,
       lineHeight: 14.4,

@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Button from '@/components/Button/Button';
 
-const PasswordChangedScreen: React.FC = () => {
+const PasswordChangedScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Ionicons name="checkmark-circle-outline" size={100} color="#18C07A" />
@@ -19,6 +19,10 @@ const PasswordChangedScreen: React.FC = () => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
+        onPress={() => {
+          navigation.navigate('Login');
+        }}
+
         />
       </View>
     </View>
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: 'bold',
     fontSize: 24,
     lineHeight: 28.8,
@@ -52,7 +56,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subtitle: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 21,

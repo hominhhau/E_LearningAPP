@@ -17,6 +17,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         marginTop: 30,
         paddingHorizontal: 20,
+
     },
     title: {
         fontSize: 35,
@@ -24,6 +25,7 @@ export default StyleSheet.create({
         color: '#00bdd6',
         textAlign: 'center',
         marginBottom: 10,
+
     },
     subtitle: {
         fontSize: 14,

@@ -6,7 +6,7 @@ import Button from '@/components/Button/Button';
 import ArrowBack from '@/components/Button/Arrow-back';
 
 
-const PasswordScreen: React.FC = () => {
+const PasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -15,7 +15,10 @@ const PasswordScreen: React.FC = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
        <View style={styles.headerIcon}>
-        <ArrowBack onPress={() => {}} />
+        <ArrowBack onPress={() => {
+           navigation.goBack();
+
+        }} />
       </View>
 
       <View style={styles.header}>
@@ -51,6 +54,10 @@ const PasswordScreen: React.FC = () => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
+        onPress={() => {
+          console.log('Navigating to PasswordChanged');
+          navigation.navigate('PasswordChanged');
+        }}
         />
       </View>
 
@@ -77,14 +84,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: 'bold',
     fontSize: 24,
     lineHeight: 28.8,
     color: '#00bed6',
   },
   subtitle: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 16.8,
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   label: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 16,
     lineHeight: 19.2,
@@ -113,7 +120,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 12,
     lineHeight: 14.4,
