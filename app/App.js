@@ -2,7 +2,6 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import WelcomeScreen from '@/components/Screen/Auth-Screens/Wellcom/Wellcom';
 import NameInputComponent from '@/components/TextInput/TextInput';
 import CreateNewPassword from '@/components/Screen/Auth-Screens/CreateNewPassword';
 import ResetPassword from '@/components/Screen/Auth-Screens/ResetPassword';
