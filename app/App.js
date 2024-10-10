@@ -19,6 +19,7 @@ import CreateAccountScreen from '../components/Screen/Auth-Screens/Register.tsx'
 import TeacherProfile from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile.tsx'
 import BenefitContainer from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Benefit/BenefitContainer.tsx'
 import GeneralTabBar from '../components/Screen/TabBar/GeneralTabBar.tsx'
+import CourseComponent from '../components/Screen/LearningLessonNoCart/EachTab/Overview/SimilarCourse/CourseComponent.tsx'
 
 export default function App() {
     return (
@@ -76,7 +77,8 @@ export default function App() {
         //<CreateAccountScreen />
         //<TeacherProfile />
         //<BenefitContainer />
-        <GeneralTabBar />
+        //<GeneralTabBar />
+        <CourseComponent />
     );
 }
 
