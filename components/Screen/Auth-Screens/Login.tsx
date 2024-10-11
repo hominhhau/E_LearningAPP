@@ -4,8 +4,53 @@ import NameInputNoIcon from '@/components/TextInputNoIcon/TextInputNoIcon';
 import Button from '@/components/Button/Button';
 import ArrowBack from '@/components/Button/Arrow-back';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
+import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from 'expo-web-browser';
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAY25xMBf2YSCaM2UazF--xSF6RAzjsJts",
+  authDomain: "e-learning-a46b7.firebaseapp.com",
+  projectId: "e-learning-a46b7",
+  storageBucket: "e-learning-a46b7.appspot.com",
+  messagingSenderId: "367304508134",
+  appId: "1:367304508134:web:614e49d9c54e9078a9b127",
+  measurementId: "G-27SRR6GRRC"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+WebBrowser.maybeCompleteAuthSession();
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+    const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+        clientId: '367304508134-c0dd8i7iv14gmlif4mooc7ppii67iqon.apps.googleusercontent.com',
+    });
+
+    React.useEffect(() => {
+        if (response?.type === 'success') {
+            const { id_token } = response.params;
+
+            const credential = GoogleAuthProvider.credential(id_token);
+            signInWithCredential(auth, credential)
+                .then((result) => {
+                    console.log('User signed in:', result.user);
+                    navigation.navigate('Welcome');
+                })
+                .catch((error) => {
+                    console.error('Error during sign in:', error);
+                });
+        }
+    }, [response]);
+
+    const handleLoginWithGoogle = () => {
+        promptAsync();
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.headerIcon}>
@@ -44,7 +89,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             <View style={styles.orContainer}>
                 <Text style={styles.orText}>OR</Text>
                 <Text style={styles.signUpWith}>Sign up with</Text>
-                <TouchableOpacity style={styles.googleButton} onPress={() => {}}>
+                <TouchableOpacity style={styles.googleButton} onPress={handleLoginWithGoogle}>
                     <GoogleLogoIcon />
                     <Text style={styles.googleButtonText}>Google</Text>
                 </TouchableOpacity>
