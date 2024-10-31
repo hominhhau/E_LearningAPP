@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import TopNavigationBar from '@/components/navigation/TopNavigationBar';
 import TabBarNoCart from '../TabBar/TabBarNoCart';
+import LessonFinal from './EachTab/LessonFinal';
+import { Video } from 'expo-av';
+import YouTube from 'react-native-youtube-iframe';
 
 const LessonNoCart: React.FC = () =>{
+    const [activeTab, setActiveTab] = useState('LESSON');
+    const [selectedVideo, setSelectedVideo] = useState<string | null>(null); // Thay đổi kiểu dữ liệu
+    //const videoRef = useRef<Video>(null);
+
+    const handleVideoSelect = (videoLink: string) => {
+        setSelectedVideo(videoLink);
+    };
+
     return(
         <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
@@ -18,16 +29,32 @@ const LessonNoCart: React.FC = () =>{
             </View>
 
             <View style={styles.thumbnailContainer}>
-                <Text>VIDEO</Text>
+            {selectedVideo && (
+                        <YouTube
+                        videoId={selectedVideo} // Chỉ truyền vào ID của video
+                        height={200}
+                        play={true}
+                        onError={(e) => console.log(e)}
+                    />
+                    )}
             </View>
 
             <View style={styles.courseInfoContainer}>
+                <Text>Course Info</Text>
             </View>
 
             <View style={styles.tabBarContainer}>
-                <TabBarNoCart />
+                <TabBarNoCart activeTab={activeTab} setActiveTab={setActiveTab}/>
                 
             </View>
+            <ScrollView contentContainerStyle={[styles.content, { paddingBottom: 80 }]}>
+               
+               {activeTab === 'LESSON' && (
+                   <View style={styles.lesson}>
+                       <LessonFinal onSelectVideo={handleVideoSelect} />
+                   </View>
+               )}
+           </ScrollView>
 
         </View>
         </ScrollView>
@@ -45,7 +72,7 @@ const styles = StyleSheet.create({
         
     },
     thumbnailContainer:{
-        backgroundColor: 'pink',
+        //backgroundColor: 'pink',
         height: 250,
     },
     courseInfoContainer:{
@@ -54,6 +81,12 @@ const styles = StyleSheet.create({
     tabBarContainer:{
         padding: 10,
     },
+    content:{
+
+    },
+    lesson:{
+            
+        },
 
 });
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import HeaderMyCourse from './MyCourse/Header/HeaderComponentMyCourse';
 import HeaderAdvertisementCourse from './MyCourse/Advertisement/AdCourses';
 import TabBarMyCourse from '../TabBar/TabBarMyCourse';
@@ -9,6 +9,7 @@ import CoursesProcessComponent from './MyCourse/All/CourseProcessComponent';
 const MyCourse: React.FC = () => {
     // Quản lý trạng thái tab hiện tại
     const [activeTab, setActiveTab] = useState('ALL');
+
 
     return (
         <View style={styles.container}>
@@ -23,10 +24,21 @@ const MyCourse: React.FC = () => {
                
                 {activeTab === 'ALL' && (
                     <View style={styles.all}>
-                        <CoursesProcessComponent />
+                        <CoursesProcessComponent/>
                     </View>
                 )}
-                {/* Bạn có thể thêm nội dung khác cho các tab ON GOING và COMPLETED ở đây */}
+                 {activeTab === 'ON GOING' && (
+                    <View style={styles.all}>
+                        <CoursesProcessComponent/>
+                        <Text>On Going</Text>
+                    </View>
+                )}
+                 {activeTab === 'COMPLETED' && (
+                    <View style={styles.all}>
+                        <CoursesProcessComponent/>
+                        <Text>Completed</Text>
+                    </View>
+                )}
             </ScrollView>
 
             <GeneralTabBar />
@@ -41,14 +53,14 @@ const styles = StyleSheet.create({
       },
       adContainer: {
         marginTop: 10,
-        zIndex: 0, // Đảm bảo quảng cáo không đè lên nội dung khác
+        zIndex: 0, 
       },
       scrollContent: {
-        paddingBottom: 70, // Tránh che nội dung bởi GeneralTabBar
+        paddingBottom: 70, 
       },
 
       headerContainer: {
-        zIndex: 1, // Đảm bảo HeaderMyCourse luôn hiển thị trên cùng
+        zIndex: 1,
       },
       content:{
 
