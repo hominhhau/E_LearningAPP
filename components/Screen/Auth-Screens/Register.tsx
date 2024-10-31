@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import ArrowBack from '@/components/Button/Arrow-back';
 import NameInputOneIcon from '@/components/TextInputOneIcon/TextInputOneIcon';
 import Button from '@/components/Button/Button';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 
-
 const CreateAccountScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   return (
     <ScrollView contentContainerStyle={styles.container}>
         <ArrowBack onPress={() => {
@@ -22,17 +24,26 @@ const CreateAccountScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
           <NameInputOneIcon 
           label="Full Name" 
           placeholder="Enter First and Last Name" 
-          iconName="person-outline" />
+          iconName="person-outline" 
+           value={fullName}
+          onChangeText={setFullName}
+          />
 
           <NameInputOneIcon 
           label="Email Address" 
           placeholder="Enter Email" 
-          iconName="mail-outline" />
+          iconName="mail-outline" 
+          value={email}
+          onChangeText={setEmail}
+          />
 
           <NameInputOneIcon 
           label="Phone" 
           placeholder="Enter number phone" 
-          iconName="call-outline" />
+          iconName="call-outline" 
+          value={phone}
+          onChangeText={setPhone}
+          />
         </View>
       </View>
       <View style={styles.buttonContainer}>
@@ -42,7 +53,7 @@ const CreateAccountScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
         textColor="#ffffff"
         width={350}
         onPress={() => {
-          navigation.navigate('CreateNewPassword')
+          navigation.navigate('CreateNewPassword', { fullName, email, phone });
         }}
         />
       </View>

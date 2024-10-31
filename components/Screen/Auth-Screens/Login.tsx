@@ -1,48 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import NameInputNoIcon from '@/components/TextInputNoIcon/TextInputNoIcon';
 import Button from '@/components/Button/Button';
 import ArrowBack from '@/components/Button/Arrow-back';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 import * as Google from 'expo-auth-session/providers/google';
-import * as WebBrowser from 'expo-web-browser';
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithCredential, GoogleAuthProvider } from "firebase/auth";
+import { FIREBASE_AUTH } from './FireBaseConfig'; // Import Firebase Auth instance
+import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth'; // Firebase functions
+import * as WebBrowser from 'expo-web-browser';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAY25xMBf2YSCaM2UazF--xSF6RAzjsJts",
-  authDomain: "e-learning-a46b7.firebaseapp.com",
-  projectId: "e-learning-a46b7",
-  storageBucket: "e-learning-a46b7.appspot.com",
-  messagingSenderId: "367304508134",
-  appId: "1:367304508134:web:614e49d9c54e9078a9b127",
-  measurementId: "G-27SRR6GRRC"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-WebBrowser.maybeCompleteAuthSession();
+WebBrowser.maybeCompleteAuthSession(); // Required for Expo
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-    const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-        clientId: '367304508134-c0dd8i7iv14gmlif4mooc7ppii67iqon.apps.googleusercontent.com',
+    // Initialize Google Auth with client IDs (replace with actual IDs)
+    const [request, response, promptAsync] = Google.useAuthRequest({
+        clientId: 'YOUR_GOOGLE_CLIENT_ID',
+        iosClientId: 'YOUR_IOS_CLIENT_ID',
+        androidClientId: 'YOUR_ANDROID_CLIENT_ID',
     });
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (response?.type === 'success') {
             const { id_token } = response.params;
 
+            // Create a Google credential and sign in with Firebase
             const credential = GoogleAuthProvider.credential(id_token);
-            signInWithCredential(auth, credential)
-                .then((result) => {
-                    console.log('User signed in:', result.user);
+            signInWithCredential(FIREBASE_AUTH, credential)
+                .then(userCredential => {
+                    console.log('Logged in with Google:', userCredential.user);
+                    // Navigate to the Welcome screen or any other screen after successful login
                     navigation.navigate('Welcome');
                 })
-                .catch((error) => {
-                    console.error('Error during sign in:', error);
+                .catch(error => {
+                    console.error('Error logging in with Google:', error);
                 });
         }
     }, [response]);
@@ -79,17 +70,14 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
                     backgroundColor="#00bdd6"
                     textColor="#ffffff"
                     width={350}
-                    onPress={() => {
-                        console.log('Navigating to Welcome');
-                        navigation.navigate('Welcome');
-                    }}
+                    onPress={() => navigation.navigate('Welcome')}
                 />
             </View>
 
             <View style={styles.orContainer}>
                 <Text style={styles.orText}>OR</Text>
                 <Text style={styles.signUpWith}>Sign up with</Text>
-                <TouchableOpacity style={styles.googleButton} onPress={handleLoginWithGoogle}>
+                <TouchableOpacity style={styles.googleButton} onPress={handleLoginWithGoogle} disabled={!request}>
                     <GoogleLogoIcon />
                     <Text style={styles.googleButtonText}>Google</Text>
                 </TouchableOpacity>
