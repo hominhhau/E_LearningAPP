@@ -5,9 +5,9 @@ import Button from '@/components/Button/Button';
 import ArrowBack from '@/components/Button/Arrow-back';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 import * as Google from 'expo-auth-session/providers/google';
-import { initializeApp } from "firebase/app";
-import { FIREBASE_AUTH } from './FireBaseConfig'; // Import Firebase Auth instance
-import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth'; // Firebase functions
+// import { initializeApp } from "firebase/app";
+// import { FIREBASE_AUTH } from './FireBaseConfig'; // Import Firebase Auth instance
+// import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth'; // Firebase functions
 import * as WebBrowser from 'expo-web-browser';
 
 WebBrowser.maybeCompleteAuthSession(); // Required for Expo
