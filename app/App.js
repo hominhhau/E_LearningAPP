@@ -38,7 +38,8 @@ import MyCourse from '../components/Screen/Main-Screens/MyCourse.tsx'
 //18.10.2024
 // import FindComponent from '../components/Screen/Main-Screens/Search/FindComponent.tsx'
 // import HotTopicComponent from '../components/Screen/Main-Screens/Search/HotTopicComponent.tsx'
-
+//31.10.2024
+import ChatBubble from '../components/Screen/ChatBotScreen/ChatBubble.tsx'
 
 export default function App() {
     return (
@@ -112,12 +113,14 @@ export default function App() {
 
         //<HeaderMyCourse />
         //<HeaderAdvertisementCourse />
-        <MyCourse />
+        //<MyCourse />
         //<CoursesProcessComponent />
 
         //<FindComponent />
 
         //<HotTopicComponent />
+
+        <ChatBubble />
 
     );
 };
