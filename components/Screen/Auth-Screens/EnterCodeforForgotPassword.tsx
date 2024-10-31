@@ -5,11 +5,13 @@ import ArrowBack from '@/components/Button/Arrow-back';
 import NameInputNoIcon from '@/components/TextInputNoIcon/TextInputNoIcon';
 import Button from '@/components/Button/Button';
 
-const EnterCodeForgotPasswordScreen: React.FC = () => {
+const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerIcon}>
-        <ArrowBack onPress={() => {}} />
+        <ArrowBack onPress={() => {
+          navigation.goBack();
+        }} />
       </View>
 
       <View style={styles.header}>
@@ -30,6 +32,9 @@ const EnterCodeForgotPasswordScreen: React.FC = () => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
+        onPress={() => {
+          navigation.navigate('CreateNewPassword');
+        }}
         />
       </View>
     </View>
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: 'bold',
     fontSize: 24,
     lineHeight: 28.8,
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   subtitle: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 24,
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loginText: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 16,
     lineHeight: 19.2,

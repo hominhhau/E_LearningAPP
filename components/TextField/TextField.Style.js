@@ -19,7 +19,7 @@ export default StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 12,
-        fontFamily: 'Lato',
+        fontFamily: 'Lato-Regular',
         lineHeight: 14.4,
         color: '#a9a9a9',
     },

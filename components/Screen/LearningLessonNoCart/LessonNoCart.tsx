@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import TopNavigationBar from '@/components/navigation/TopNavigationBar';
-//import TabBarNoCart from '../TabBar/TabBarNoCart';
+import TabBarNoCart from '../TabBar/TabBarNoCart';
 
 const LessonNoCart: React.FC = () =>{
     return(
@@ -25,7 +25,7 @@ const LessonNoCart: React.FC = () =>{
             </View>
 
             <View style={styles.tabBarContainer}>
-                
+                <TabBarNoCart />
                 
             </View>
 

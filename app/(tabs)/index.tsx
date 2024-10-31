@@ -1,60 +1,38 @@
-// import { Image, StyleSheet, Platform } from 'react-native';
-
-// import { HelloWave } from '@/components/HelloWave';
-// import ParallaxScrollView from '@/components/ParallaxScrollView';
-// import { ThemedText } from '@/components/ThemedText';
-// import { ThemedView } from '@/components/ThemedView';
+// import React from 'react';
+// import { ActivityIndicator } from 'react-native';
+// import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import WelcomeScreen from '@/components/Screen/Auth-Screens/Welcome/Welcome';
-// import Register from '@/components/Screen/Auth-Screens/CreateAccount/Register';
+// import CreateNewPassword from '@/components/Screen/Auth-Screens/CreateNewPassword';
+// import ResetPassword from '@/components/Screen/Auth-Screens/ResetPassword';
+// import PasswordChanged from '@/components/Screen/Auth-Screens/PasswordChanged';
+// import ForgotPassword from '@/components/Screen/Auth-Screens/ForgotPassword';
+// import EnterCodeForgotPassword from '@/components/Screen/Auth-Screens/EnterCodeforForgotPassword';
+// import Login from '@/components/Screen/Auth-Screens/Login';
+// import CreateAccountScreen from '@/components/Screen/Auth-Screens/Register';
+// import { useLoadFonts } from '@/assets/fonts/fonts';
 
+// const Stack = createNativeStackNavigator();
 
-// export default function HomeScreen() {
-//   return (
-//     // <ParallaxScrollView
-//     //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-//     //   headerImage={
-//     //     <Image
-//     //       source={require('@/assets/images/partial-react-logo.png')}
-//     //       style={styles.reactLogo}
-//     //     />
-//     //   }>
-//     //   <ThemedView style={styles.titleContainer}>
-//     //     <ThemedText type="title">Welcome!</ThemedText>
-//     //     <HelloWave />
-//     //   </ThemedView>
-//     //   <ThemedView style={styles.stepContainer}>
-//     //     <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-//     //     <ThemedText>
-//     //       Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-//     //       Press{' '}
-//     //       <ThemedText type="defaultSemiBold">
-//     //         {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-//     //       </ThemedText>{' '}
-//     //       to open developer tools.
-//     //     </ThemedText>
-//     //   </ThemedView>
-//     //   <ThemedView style={styles.stepContainer}>
-//     //     <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-//     //     <ThemedText>
-//     //       Tap the Explore tab to learn more about what's included in this starter app.
-//     //     </ThemedText>
-//     //   </ThemedView>
-//     //   <ThemedView style={styles.stepContainer}>
-//     //     <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-//     //     <ThemedText>
-//     //       When you're ready, run{' '}
-//     //       <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-//     //       <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-//     //       <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-//     //       <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-//     //     </ThemedText>
-//     //   </ThemedView>
-//     // </ParallaxScrollView>
-    
-//     // <WelcomeScreen />
-//     <Register />
-//   );
+// export default function App() {
+//     const fontsLoaded = useLoadFonts(); // Hook to load fonts
+
+//     if (!fontsLoaded) {
+//         return <ActivityIndicator size="large" color="#00bdd6" />; // Show loading while fonts are being loaded
+//     }
+
+//     return (
+//         <NavigationContainer independent={true}>
+//             <Stack.Navigator initialRouteName="CreateAccountScreen">
+//                 <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+//                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+//                 <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} options={{ headerShown: false }} />
+//                 <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} options={{ headerShown: false }} />
+//                 <Stack.Screen name="ResetPassword" component={ResetPassword} options={{ headerShown: false }} />
+//                 <Stack.Screen name="PasswordChanged" component={PasswordChanged} options={{ headerShown: false }} />
+//                 <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
+//                 <Stack.Screen name="EnterCodeForgotPassword" component={EnterCodeForgotPassword} options={{ headerShown: false }} />
+//             </Stack.Navigator>
+//         </NavigationContainer>
+//     );
 // }
-
-
-

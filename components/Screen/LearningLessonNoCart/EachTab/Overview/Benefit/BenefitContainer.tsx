@@ -37,7 +37,7 @@ const BenefitContainer: React.FC = () => {
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
+        flex: 0,
         padding: 20,
     }
 });
