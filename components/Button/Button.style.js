@@ -16,6 +16,6 @@ export default StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
         lineHeight: 30,
-        fontFamily: 'Poppins',
+        fontFamily: 'Lato-Regular',
     },
 });

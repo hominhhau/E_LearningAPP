@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import ArrowBack from '@/components/Button/Arrow-back';
 import NameInputOneIcon from '@/components/TextInputOneIcon/TextInputOneIcon';
 import Button from '@/components/Button/Button';
 import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 
-
-const CreateAccountScreen: React.FC = () => {
+const CreateAccountScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   return (
     <ScrollView contentContainerStyle={styles.container}>
-        <ArrowBack onPress={() => {}} />
+        <ArrowBack onPress={() => {
+        navigation.navigate('Welcome')
+        }} />
     
       <View style={styles.header}>
         <Text style={styles.headerText}>Create Account</Text>
@@ -20,17 +24,26 @@ const CreateAccountScreen: React.FC = () => {
           <NameInputOneIcon 
           label="Full Name" 
           placeholder="Enter First and Last Name" 
-          iconName="person-outline" />
+          iconName="person-outline" 
+           value={fullName}
+          onChangeText={setFullName}
+          />
 
           <NameInputOneIcon 
           label="Email Address" 
           placeholder="Enter Email" 
-          iconName="mail-outline" />
+          iconName="mail-outline" 
+          value={email}
+          onChangeText={setEmail}
+          />
 
           <NameInputOneIcon 
           label="Phone" 
           placeholder="Enter number phone" 
-          iconName="call-outline" />
+          iconName="call-outline" 
+          value={phone}
+          onChangeText={setPhone}
+          />
         </View>
       </View>
       <View style={styles.buttonContainer}>
@@ -39,6 +52,9 @@ const CreateAccountScreen: React.FC = () => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
+        onPress={() => {
+          navigation.navigate('CreateNewPassword', { fullName, email, phone });
+        }}
         />
       </View>
   
@@ -125,7 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   orText: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 14,
     lineHeight: 16.8,
@@ -133,7 +149,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   signUpWith: {
-    fontFamily: 'Lato',
+    fontFamily: 'Lato-Regular',
     fontWeight: '400',
     fontSize: 16,
     lineHeight: 19.2,
@@ -164,6 +180,7 @@ const styles = StyleSheet.create({
     color: '#222222',
     textAlign: 'center',
     marginTop: 20,
+    
   },
   loginLink: {
     color: '#00bdd6',
