@@ -13,7 +13,6 @@ import NameInput from "@/components/TextInput/TextInput";
 import Button from "@/components/Button/Button";
 import ArrowBack from "@/components/Button/Arrow-back";
 import { Api_Auth } from "@/apis/Api_Auth";
-import axios from "axios";
 
 const PasswordScreen: React.FC<{ navigation: any; route: any }> = ({
   navigation,

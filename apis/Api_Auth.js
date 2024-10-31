@@ -9,8 +9,8 @@ export const Api_Auth = {
     registerByPhone: async (name, email, phone, password, image, role) => {
         return ApiManager.post('/registerByPhone', { name, email, phone, password, image, role });
     },
-    // login
-    // login: async (email, password) => {
-    //     return ApiManager.post('/login', { email, password });
-    // }
+    //loginByPhone
+    loginByPhone: async (phone, password) => {
+        return ApiManager.post('/loginByPhone', { phone, password });
+    }
 }
