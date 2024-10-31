@@ -33,7 +33,7 @@ import RecommendedForYouComponent from '../components/Screen/Main-Screens/Home/R
 import TabBarMyCourse from '../components/Screen/TabBar/TabBarMyCourse.tsx'
 // import HeaderMyCourse from '../components/Screen/Main-Screens/MyCourse/Header/HeaderComponentMyCourse.tsx'
 // import HeaderAdvertisementCourse from '../components/Screen/Main-Screens/MyCourse/Advertisement/AdCourses.tsx'
-// import MyCourse from '../components/Screen/Main-Screens/MyCourse.tsx'
+import MyCourse from '../components/Screen/Main-Screens/MyCourse.tsx'
 // import CoursesProcessComponent from '../components/Screen/Main-Screens/MyCourse/All/CourseProcessComponent.tsx'
 //18.10.2024
 // import FindComponent from '../components/Screen/Main-Screens/Search/FindComponent.tsx'
@@ -105,14 +105,14 @@ export default function App() {
         //<TopTeacherComponent />
         //<HeaderAdvertisementComponent />
         //<HeaderComponent />
-        <Home />
+        //<Home />
         //<CourseThatInspiresComponent />
         //<RecommendedForYouComponent />
         //<TabBarMyCourse />
 
         //<HeaderMyCourse />
         //<HeaderAdvertisementCourse />
-        //<MyCourse />
+        <MyCourse />
         //<CoursesProcessComponent />
 
         //<FindComponent />
