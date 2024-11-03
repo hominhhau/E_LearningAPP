@@ -5,11 +5,15 @@ import styles from './TextInputNoIcon.style';
 
 type NameInputNoIconProps = {
     placeholder: string;
+    value?: string;
+    onChangeText?: (text: string) => void;
 };
 
 const NameInputNoIcon: React.FC<NameInputNoIconProps> = 
 ({ 
-   placeholder
+   placeholder,
+    value,
+    onChangeText
 }) => 
     {return (
       <View style={styles.container}>
@@ -18,6 +22,8 @@ const NameInputNoIcon: React.FC<NameInputNoIconProps> =
                     placeholder={placeholder}
                     placeholderTextColor="#a9a9a9"
                     style={styles.input}
+                    value={value}
+                    onChangeText={onChangeText}
                 />
             </View>
         </View>

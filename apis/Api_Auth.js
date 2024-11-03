@@ -13,4 +13,13 @@ export const Api_Auth = {
     // login: async (email, password) => {
     //     return ApiManager.post('/login', { email, password });
     // }
+
+    // quên mật khẩu
+    forgotPassword: async (email) => {
+        return ApiManager.post('/forgot-password', { email });
+    },
+    // reset mật khẩu
+    resetPassword: async (email, resetToken, newPassword) => {
+        return ApiManager.post('/reset-password', { email, resetToken, newPassword });
+    }
 }
