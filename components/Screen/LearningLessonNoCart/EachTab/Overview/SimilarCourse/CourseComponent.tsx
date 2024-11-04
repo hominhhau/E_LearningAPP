@@ -1,6 +1,16 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+<<<<<<< HEAD
+
+const CourseComponent: React.FC = () => {
+    return (
+        <View></View>
+    );
+};
+
+const styles = StyleSheet.create({});
+=======
 import Courses from './Course';
 
 const CourseComponent: React.FC = () => {
@@ -51,5 +61,6 @@ const styles = StyleSheet.create({
         flex: 1,
     }
 });
+>>>>>>> Develop
 
 export default CourseComponent;
