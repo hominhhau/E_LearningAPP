@@ -16,10 +16,10 @@
 // import LessonNoCard from '../components/Screen/LearningLessonNoCart/LessonNoCart.tsx'
 // // import CreateAccountScreen from '../components/Screen/Auth-Screens/Register.tsx'
 // //08.10.2024
-// // import TeacherProfile from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile.tsx'
-// // import BenefitContainer from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Benefit/BenefitContainer.tsx'
-// // import CourseComponent from '../components/Screen/LearningLessonNoCart/EachTab/Overview/SimilarCourse/CourseComponent.tsx'
-// // import OverviewFinal from '../components/Screen/LearningLessonNoCart/EachTab/OverviewFinal.tsx';
+// import TeacherProfile from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile.tsx'
+// import BenefitContainer from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Benefit/BenefitContainer.tsx'
+// import CourseComponent from '../components/Screen/LearningLessonNoCart/EachTab/Overview/SimilarCourse/CourseComponent.tsx'
+// import OverviewFinal from '../components/Screen/LearningLessonNoCart/EachTab/OverviewFinal.tsx';
 // //11.10.2024
 // import CategoryComponent from '../components/Screen/Main-Screens/Home/Categories/CategoriesComponent.tsx'
 // import CoursePopularComponent from '../components/Screen/Main-Screens/Home/PopularCourses/CoursePopularComponent.tsx'
