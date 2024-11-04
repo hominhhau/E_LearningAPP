@@ -40,10 +40,10 @@
 // // import HotTopicComponent from '../components/Screen/Main-Screens/Search/HotTopicComponent.tsx'
 // //03.11.2024
 // import CertificateForm from '../components/Screen/Certificate/CertificateForm.tsx'
-// import User from '../components/Screen/Main-Screens/UserProfile/User.tsx'
+ import User from '../components/Screen/Main-Screens/UserProfile/User.tsx'
 
-// export default function App() {
-//     return (
+ export default function App() {
+     return (
 //         // <ParallaxScrollView
 //         //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
 //         //   headerImage={
@@ -122,8 +122,8 @@
 //         //<HotTopicComponent />
 
 //         //<CertificateForm />
-//         <User/>
-//     );
-// };
+         <User/>
+    );
+ };
 
 

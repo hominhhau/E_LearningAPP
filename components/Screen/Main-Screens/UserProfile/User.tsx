@@ -7,10 +7,18 @@ import {
   Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import  StatsGroup from "./Statistical";
 import * as ImagePicker from "expo-image-picker";
 
 const User = () => {
   const [avatar, setAvatar] = useState<string | null>(null);
+  const [name, setName] = useState<string | null>(null);//truyen do
+
+  const stats = [
+    { label: "Save", value: 25 },
+    { label: "On Going", value: 24 },
+    { label: "Completed", value: 2 },
+  ];
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -27,7 +35,7 @@ const User = () => {
     });
 
     if (!result.canceled) {
-      setAvatar(result.assets[0].uri); // Cập nhật URI ảnh vào avatar
+      setAvatar(result.assets[0].uri); 
     }
   };
 
@@ -43,12 +51,10 @@ const User = () => {
       <View style={styles.profileContainer}>
         <View style={styles.imgContainer}>
           <Image
-            source={require("../../../../assets/images/AnhBia.png")}
+            source={require("../../../../assets/images/AnhBia.png")}//nay cho mac dinh khong thay doi 
             style={styles.imgBia}
           />
         </View>
-
-        {/* Avatar */}
         <TouchableOpacity onPress={pickImage} style={styles.avatarContainer}>
           <Image
             source={
@@ -59,8 +65,11 @@ const User = () => {
             style={styles.avatar}
           />
         </TouchableOpacity>
+        <Text style={styles.textName}>Nguyễn Văn A</Text>
 
-        <View style={styles.statisticalContainer}></View>
+        <View style={styles.statisticalContainer}>
+        <StatsGroup stats={stats} />
+        </View>
       </View>
     </View>
   );
@@ -89,7 +98,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   profileContainer: {
-    alignItems: "center", // Căn giữa tất cả các phần tử bên trong
+    alignItems: "center",
     paddingTop: 16,
   },
   imgContainer: {
@@ -117,7 +126,17 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
   },
-  statisticalContainer: {},
+  textName:{
+    fontSize: 16, 
+    fontWeight: "bold",
+    marginTop: 16,
+
+  },
+  statisticalContainer: {
+    flexDirection: "row",
+    marginTop: 16,
+    alignItems: "center",
+  },
 });
 
 export default User;
