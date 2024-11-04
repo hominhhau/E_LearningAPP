@@ -8,20 +8,16 @@ type CoursesProcessProps = {
     processPercentage: number; 
 };
 
-// Component hiển thị tiến trình khóa học
 const CoursesProcess: React.FC<CoursesProcessProps> = ({ image, title, time, processPercentage }) => {
     return (
         <View style={styles.container}>
-            {/* Hình ảnh khóa học */}
             <Image source={image} style={styles.image} />
 
-            {/* Phần thông tin khóa học */}
             <View style={styles.infoContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.time}>{time}</Text>
                 <Text style={styles.progressText}>{processPercentage}% Complete</Text>
 
-                {/* Thanh tiến trình */}
                 <View style={styles.progressBarContainer}>
                     <View style={[styles.progressBar, { width: `${processPercentage}%` }]} />
                 </View>
