@@ -9,6 +9,7 @@ import { Api_Auth } from '../../../apis/Api_Auth';  // Import API
 const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [email, setEmail] = useState('');  // State để lưu email
 
+  
   const handleSendCode = async () => {
     try {
       await Api_Auth.forgotPassword(email);  // Gọi API quên mật khẩu
