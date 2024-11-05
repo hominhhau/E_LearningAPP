@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import TopNavigationBar from '@/components/navigation/TopNavigationBar';
-//import TabBarCard from '../TabBar/TabBarCart'
+import TabBarCard from '../TabBar/TabBarCart'
+
 const LessonCart: React.FC = () =>{
     return(
 
@@ -25,8 +26,8 @@ const LessonCart: React.FC = () =>{
             </View>
 
             <View style={styles.tabBarContainer}>
-                
-            </View>r
+                <TabBarCard />
+            </View>
 
             <View style={styles.listCourseContainer}>
                 <Text>Đây là danh sách khóa học </Text>

@@ -1,15 +1,23 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 type CoursesProcessProps = {
     image: any; 
     title: string; 
     time: string; 
     processPercentage: number; 
+    onPress?: () => void;
 };
 
-const CoursesProcess: React.FC<CoursesProcessProps> = ({ image, title, time, processPercentage }) => {
+const CoursesProcess: React.FC<CoursesProcessProps> = ({ 
+    image, 
+    title, 
+    time, 
+    processPercentage,
+    onPress
+ }) => {
     return (
+        <TouchableOpacity onPress={() => console.log("Course")}>
         <View style={styles.container}>
             <Image source={image} style={styles.image} />
 
@@ -23,6 +31,7 @@ const CoursesProcess: React.FC<CoursesProcessProps> = ({ image, title, time, pro
                 </View>
             </View>
         </View>
+        </TouchableOpacity> 
     );
 };
 

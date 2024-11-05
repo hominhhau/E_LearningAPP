@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import CoursesProcess from './Course';
 
 type CoursesProcessComponentProps = {
@@ -8,6 +9,7 @@ type CoursesProcessComponentProps = {
 };
 
 const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({ activeTab }) => {
+    const navigation = useNavigation();
     const dataCourses = [
         {
             id: 1,
@@ -55,17 +57,19 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({ activ
 
     return(
         <View style={styles.container}>
-        {filteredCourses.map((course) => (
-            <View key={course.id}>
-                <CoursesProcess
-                    image={course.image}
-                    title={course.title}
-                    time={course.time}
-                    processPercentage={course.processPercentage}
-                />
-            </View>
-        ))}
-    </View>
+            {filteredCourses.map((course) => (
+                <TouchableOpacity
+                    key={course.id}
+                >
+                    <CoursesProcess
+                        image={course.image}
+                        title={course.title}
+                        time={course.time}
+                        processPercentage={course.processPercentage}
+                    />
+                </TouchableOpacity>
+            ))}
+        </View>
     );
 };
 
