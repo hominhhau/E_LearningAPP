@@ -3,7 +3,8 @@ import { View, StyleSheet, ScrollView, Text } from "react-native";
 import HeaderMyCourse from "./MyCourse/Header/HeaderComponentMyCourse";
 import HeaderAdvertisementCourse from "./MyCourse/Advertisement/AdCourses";
 import TabBarMyCourse from "../TabBar/TabBarMyCourse";
-import GeneralTabBar from "../TabBar/GeneralTabBar";
+//import GeneralTabBar from "../TabBar/GeneralTabBar";
+import GeneralTabBar02 from "../TabBar/GeneralTabBar02";
 import CoursesProcessComponent from "./MyCourse/All/CourseProcessComponent";
 
 const MyCourse: React.FC = () => {
@@ -37,8 +38,10 @@ const MyCourse: React.FC = () => {
 
         
       </ScrollView>
+      
+      
 
-      <GeneralTabBar />
+      
     </View>
   );
 };

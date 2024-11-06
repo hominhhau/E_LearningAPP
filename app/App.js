@@ -38,6 +38,7 @@ import MyCourse from '../components/Screen/Main-Screens/MyCourse.tsx'
 //18.10.2024
 // import FindComponent from '../components/Screen/Main-Screens/Search/FindComponent.tsx'
 // import HotTopicComponent from '../components/Screen/Main-Screens/Search/HotTopicComponent.tsx'
+import GeneralTabBar02 from '../components/Screen/TabBar/GeneralTabBar02.tsx';
 
 
 export default function App() {
@@ -112,12 +113,15 @@ export default function App() {
 
         //<HeaderMyCourse />
         //<HeaderAdvertisementCourse />
-        <MyCourse />
+        //<MyCourse />
         //<CoursesProcessComponent />
 
         //<FindComponent />
 
         //<HotTopicComponent />
+
+        <GeneralTabBar02 />
+
 
     );
 };

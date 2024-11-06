@@ -2,6 +2,7 @@
 // import { ActivityIndicator } from 'react-native';
 // import { NavigationContainer } from '@react-navigation/native';
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import WelcomeScreen from '@/components/Screen/Auth-Screens/Welcome/Welcome';
 // import CreateNewPassword from '@/components/Screen/Auth-Screens/CreateNewPassword';
 // import ResetPassword from '@/components/Screen/Auth-Screens/ResetPassword';
@@ -11,6 +12,9 @@
 // import Login from '@/components/Screen/Auth-Screens/Login';
 // import CreateAccountScreen from '@/components/Screen/Auth-Screens/Register';
 // import { useLoadFonts } from '@/assets/fonts/fonts';
+
+// import Home from '@/components/Screen/Main-Screens/Home'
+// import MyCourse from '@/components/Screen/Main-Screens/MyCourse';
 
 // const Stack = createNativeStackNavigator();
 
