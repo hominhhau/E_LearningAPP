@@ -7,12 +7,16 @@ import {
   Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import  StatsGroup from "./Statistical";
+import StatsGroup from "./Statistical";
 import * as ImagePicker from "expo-image-picker";
+//import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../constants/firebaseConfig"; // Import từ file config
 const User = () => {
   const [avatar, setAvatar] = useState<string | null>(null);
-  const [name, setName] = useState<string | null>(null);//truyen do
+  const [name, setName] = useState<string | null>(null); //truyen do
+  const [uploading, setUploading] = useState(false);
 
   const stats = [
     { label: "Save", value: 25 },
@@ -35,7 +39,32 @@ const User = () => {
     });
 
     if (!result.canceled) {
-      setAvatar(result.assets[0].uri); 
+      const imageUri = result.assets[0].uri;
+      setAvatar(imageUri); // Hiển thị ảnh tạm thời
+      await uploadImageToFirebase(imageUri); // Upload ảnh lên Firebase
+    }
+  };
+
+  const uploadImageToFirebase = async (uri: string) => {
+    setUploading(true);
+  
+    try {
+      const response = await fetch(uri);
+      const blob = await response.blob();
+      const filename = uri.substring(uri.lastIndexOf("/") + 1);
+  
+      const storageRef = ref(storage, `avatars/${filename}`);
+      const snapshot = await uploadBytes(storageRef, blob);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+  
+      setAvatar(downloadURL);
+      alert("Upload thành công!");
+      console.log("Image URL:", downloadURL);
+    } catch (error) {
+      console.error("Upload failed:", error); // Hiển thị chi tiết lỗi trong console
+      alert("Có lỗi xảy ra khi upload ảnh. Xem chi tiết trong console.");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -51,7 +80,7 @@ const User = () => {
       <View style={styles.profileContainer}>
         <View style={styles.imgContainer}>
           <Image
-            source={require("../../../../assets/images/AnhBia.png")}//nay cho mac dinh khong thay doi 
+            source={require("../../../../assets/images/AnhBia.png")} // Ảnh nền mặc định không thay đổi
             style={styles.imgBia}
           />
         </View>
@@ -59,7 +88,7 @@ const User = () => {
           <Image
             source={
               avatar
-                ? { uri: avatar } 
+                ? { uri: avatar }
                 : require("../../../../assets/images/defaultAvatar.png") // Avatar mặc định
             }
             style={styles.avatar}
@@ -68,7 +97,7 @@ const User = () => {
         <Text style={styles.textName}>Nguyễn Văn A</Text>
 
         <View style={styles.statisticalContainer}>
-        <StatsGroup stats={stats} />
+          <StatsGroup stats={stats} />
         </View>
       </View>
     </View>
@@ -126,11 +155,10 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
   },
-  textName:{
-    fontSize: 16, 
+  textName: {
+    fontSize: 16,
     fontWeight: "bold",
     marginTop: 16,
-
   },
   statisticalContainer: {
     flexDirection: "row",

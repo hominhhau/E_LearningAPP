@@ -14,33 +14,33 @@ WebBrowser.maybeCompleteAuthSession(); // Required for Expo
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     // Initialize Google Auth with client IDs (replace with actual IDs)
-    const [request, response, promptAsync] = Google.useAuthRequest({
-        clientId: 'YOUR_GOOGLE_CLIENT_ID',
-        iosClientId: 'YOUR_IOS_CLIENT_ID',
-        androidClientId: 'YOUR_ANDROID_CLIENT_ID',
-    });
+    // const [request, response, promptAsync] = Google.useAuthRequest({
+    //     clientId: 'YOUR_GOOGLE_CLIENT_ID',
+    //     iosClientId: 'YOUR_IOS_CLIENT_ID',
+    //     androidClientId: 'YOUR_ANDROID_CLIENT_ID',
+    // });
 
-    useEffect(() => {
-        if (response?.type === 'success') {
-            const { id_token } = response.params;
+    // useEffect(() => {
+    //     if (response?.type === 'success') {
+    //         const { id_token } = response.params;
 
-            // Create a Google credential and sign in with Firebase
-            const credential = GoogleAuthProvider.credential(id_token);
-            signInWithCredential(FIREBASE_AUTH, credential)
-                .then(userCredential => {
-                    console.log('Logged in with Google:', userCredential.user);
-                    // Navigate to the Welcome screen or any other screen after successful login
-                    navigation.navigate('Welcome');
-                })
-                .catch(error => {
-                    console.error('Error logging in with Google:', error);
-                });
-        }
-    }, [response]);
+    //         // Create a Google credential and sign in with Firebase
+    //         const credential = GoogleAuthProvider.credential(id_token);
+    //         signInWithCredential(FIREBASE_AUTH, credential)
+    //             .then(userCredential => {
+    //                 console.log('Logged in with Google:', userCredential.user);
+    //                 // Navigate to the Welcome screen or any other screen after successful login
+    //                 navigation.navigate('Welcome');
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error logging in with Google:', error);
+    //             });
+    //     }
+    // }, [response]);
 
-    const handleLoginWithGoogle = () => {
-        promptAsync();
-    };
+    // const handleLoginWithGoogle = () => {
+    //     promptAsync();
+    // };
 
     return (
         <View style={styles.container}>
@@ -77,10 +77,10 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
             <View style={styles.orContainer}>
                 <Text style={styles.orText}>OR</Text>
                 <Text style={styles.signUpWith}>Sign up with</Text>
-                <TouchableOpacity style={styles.googleButton} onPress={handleLoginWithGoogle} disabled={!request}>
+                {/* <TouchableOpacity style={styles.googleButton} onPress={handleLoginWithGoogle} disabled={!request}>
                     <GoogleLogoIcon />
                     <Text style={styles.googleButtonText}>Google</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </View>
     );
