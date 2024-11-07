@@ -24,7 +24,7 @@ const AddToCart: React.FC<AddToCartProps> = ({
     return (
         <TouchableOpacity 
         style={[style.button, { backgroundColor, width }]}
-        onPress={() => {console.log('cart')}}>
+        onPress={onPress}>
             <Ionicons name={icon as any} size={24} color={textColor} />
             <Text style={[style.text, { color: textColor }]}>{text}</Text>
         </TouchableOpacity>   

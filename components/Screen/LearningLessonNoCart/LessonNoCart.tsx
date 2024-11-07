@@ -4,7 +4,18 @@ import { Ionicons } from '@expo/vector-icons';
 import TopNavigationBar from '@/components/navigation/TopNavigationBar';
 import TabBarNoCart from '../TabBar/TabBarNoCart';
 import AddToCart from '@/components/Button/AddToCart';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '@/components/navigation/types'; // Adjust the import path as necessary
+
+
 const LessonNoCart: React.FC = () =>{
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+    //const navigation = useNavigation();
+    const handleAddToCart = () => {
+        // Điều hướng đến màn hình Cart
+        navigation.navigate('Cart');
+    };
+
     return(
         <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.container}>
@@ -15,6 +26,7 @@ const LessonNoCart: React.FC = () =>{
                 onMorePress={() => {}}
                 titleHeader="UX Foundation"
             />
+                   
             </View>
 
             <View style={styles.thumbnailContainer}>
@@ -37,7 +49,7 @@ const LessonNoCart: React.FC = () =>{
                     backgroundColor="#00bdd6"
                     textColor="#ffffff"
                     width={100}
-                    onPress={() => {console.log('cart')}}
+                    onPress={handleAddToCart}
                 />
             </View>
 
