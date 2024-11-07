@@ -36,8 +36,8 @@ import TabBarMyCourse from '../components/Screen/TabBar/TabBarMyCourse.tsx'
 import MyCourse from '../components/Screen/Main-Screens/MyCourse.tsx'
 // import CoursesProcessComponent from '../components/Screen/Main-Screens/MyCourse/All/CourseProcessComponent.tsx'
 //18.10.2024
-// import FindComponent from '../components/Screen/Main-Screens/Search/FindComponent.tsx'
-// import HotTopicComponent from '../components/Screen/Main-Screens/Search/HotTopicComponent.tsx'
+import FindComponent from '../components/Screen/Main-Screens/Search/FindComponent.tsx'
+import Search from '../components/Screen/Main-Screens/Search.tsx'
 
 
 export default function App() {
@@ -112,10 +112,11 @@ export default function App() {
 
         //<HeaderMyCourse />
         //<HeaderAdvertisementCourse />
-        <MyCourse />
+        //<MyCourse />
         //<CoursesProcessComponent />
 
         //<FindComponent />
+        <Search />
 
         //<HotTopicComponent />
 
