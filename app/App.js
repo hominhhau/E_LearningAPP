@@ -40,7 +40,9 @@
 // // import HotTopicComponent from '../components/Screen/Main-Screens/Search/HotTopicComponent.tsx'
 // //03.11.2024
 // import CertificateForm from '../components/Screen/Certificate/CertificateForm.tsx'
- import User from '../components/Screen/Main-Screens/UserProfile/User.tsx'
+//import User from '../components/Screen/Main-Screens/UserProfile/User.tsx'
+//7.11.2024
+import Cart from '../components/Screen/Cart/Cart.tsx'
 
  export default function App() {
      return (
@@ -122,7 +124,8 @@
 //         //<HotTopicComponent />
 
 //         //<CertificateForm />
-         <User/>
+         //<User/>
+           <Cart/>
     );
  };
 
