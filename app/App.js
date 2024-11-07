@@ -91,7 +91,7 @@ export default function App() {
         //<Login />
         //<GoogleLogoIcon />
         //<Register />
-        //<LessonNoCard />
+        <LessonNoCard />
         //<CreateAccountScreen />
         //<TeacherProfile />
         //<BenefitContainer />
@@ -104,7 +104,7 @@ export default function App() {
         //<TopTeacherComponent />
         //<HeaderAdvertisementComponent />
         //<HeaderComponent />
-        <Home />
+        //<Home />
         //<CourseThatInspiresComponent />
         //<RecommendedForYouComponent />
         //<TabBarMyCourse />

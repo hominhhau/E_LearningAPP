@@ -10,6 +10,7 @@ type CoursePopularProps = {
     titleStar: string;
     numberLesson: string;
     titleLesson: string;
+    onPress?: () => void;
 };
 
 const CoursePopular: React.FC<CoursePopularProps> = ({
@@ -20,6 +21,8 @@ const CoursePopular: React.FC<CoursePopularProps> = ({
     titleStar,
     numberLesson,
     titleLesson,
+    onPress,
+
 }) => {
     
     const [isStarred, setIsStarred] = useState(false);
@@ -36,6 +39,7 @@ const CoursePopular: React.FC<CoursePopularProps> = ({
     };
 
     return (
+        <TouchableOpacity onPress={() => console.log('course popular')}>
         <View style={styles.card}>
             
             <Image source={imageCourse} style={styles.image} />
@@ -74,6 +78,7 @@ const CoursePopular: React.FC<CoursePopularProps> = ({
                 </View>
             </View>
         </View>
+        </TouchableOpacity>
     );
 };
 

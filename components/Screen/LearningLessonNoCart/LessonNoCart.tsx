@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView 
 import { Ionicons } from '@expo/vector-icons';
 import TopNavigationBar from '@/components/navigation/TopNavigationBar';
 import TabBarNoCart from '../TabBar/TabBarNoCart';
-
+import AddToCart from '@/components/Button/AddToCart';
 const LessonNoCart: React.FC = () =>{
     return(
         <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -22,11 +22,23 @@ const LessonNoCart: React.FC = () =>{
             </View>
 
             <View style={styles.courseInfoContainer}>
+                <Text>Course Info</Text>
             </View>
 
             <View style={styles.tabBarContainer}>
                 <TabBarNoCart />
                 
+            </View>
+
+            <View style={styles.buttonCart}>
+                <AddToCart 
+                    icon="cart"
+                    text="Add to Cart"
+                    backgroundColor="#00bdd6"
+                    textColor="#ffffff"
+                    width={100}
+                    onPress={() => {console.log('cart')}}
+                />
             </View>
 
         </View>
@@ -54,6 +66,7 @@ const styles = StyleSheet.create({
     tabBarContainer:{
         padding: 10,
     },
+    buttonCart:{},
 
 });
 
