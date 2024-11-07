@@ -3,13 +3,20 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 type CategoryProps = {
-    icon: string;  // Icon name from Ionicons
-    title: string; // Category title
-    backgroundColor: string; // Dynamic background color for the icon container
-    onPress: () => void; // Function to handle category press
+    icon: string; 
+    title: string; 
+    backgroundColor: string; 
+    onPress: () => void; 
+    iconNext?: boolean;
 };
 
-const Category: React.FC<CategoryProps> = ({ icon, title, backgroundColor, onPress }) => {
+const Category: React.FC<CategoryProps> = ({ 
+    icon, 
+    title, 
+    backgroundColor, 
+    onPress,
+    iconNext
+ }) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.container}>
             {/* Icon with dynamic background */}
@@ -19,6 +26,12 @@ const Category: React.FC<CategoryProps> = ({ icon, title, backgroundColor, onPre
             
             {/* Category title */}
             <Text style={styles.title}>{title}</Text>
+
+            {iconNext && (
+                <View style={styles.iconNextContainer}>
+                    <Ionicons name="chevron-forward-outline" size={20} color="#666" />
+                </View>
+            )}
         </TouchableOpacity>
     );
 };
@@ -46,6 +59,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#666',
         marginLeft: 10,
+    },
+    iconNextContainer: {
+        marginLeft: 'auto', // Để di chuyển iconNext sang bên phải
     },
 });
 

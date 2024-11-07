@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 // Import các màn hình
 import Home from "../components/Screen/Main-Screens/Home";
 import MyCourse from "../components/Screen/Main-Screens/MyCourse";
+import Search from "../components/Screen/Main-Screens/Search";
 
 // Tạo Tab Navigator
 const Tab = createBottomTabNavigator();
@@ -35,6 +36,15 @@ export default function App() {
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="book-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={Search}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search-outline" size={size} color={color} />
           ),
         }}
       />

@@ -20,6 +20,9 @@ const GeneralTabBar02: React.FC = () => {
             case 'My Courses':
                 navigation.navigate('MyCourse');
                 break;
+            case 'Search':
+                navigation.navigate('Search');
+                break;
             default:
                 break;
         }
@@ -81,8 +84,8 @@ const styles = StyleSheet.create({
     tabContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingVertical: 20,
-        // height: 80, 
+        //paddingVertical: 20,
+        height: 80, 
     },
     tab: {
         alignItems: 'center',
