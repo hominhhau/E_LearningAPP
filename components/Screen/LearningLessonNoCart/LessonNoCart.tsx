@@ -6,6 +6,7 @@ import TabBarNoCart from '../TabBar/TabBarNoCart';
 import LessonFinal from './EachTab/LessonFinal';
 import { Video } from 'expo-av';
 import YouTube from 'react-native-youtube-iframe';
+import { WebView } from 'react-native-webview';
 
 const LessonNoCart: React.FC = () =>{
     const [activeTab, setActiveTab] = useState('LESSON');
@@ -30,11 +31,13 @@ const LessonNoCart: React.FC = () =>{
 
             <View style={styles.thumbnailContainer}>
             {selectedVideo && (
-                        <YouTube
-                        videoId={selectedVideo} // Chỉ truyền vào ID của video
-                        height={200}
-                        play={true}
-                        onError={(e) => console.log(e)}
+                        <WebView
+                        source={{ uri: selectedVideo }}
+                        style={{ height: 200 }}
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                        startInLoadingState={true}
+                        allowsFullscreenVideo={true}
                     />
                     )}
             </View>
