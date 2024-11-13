@@ -44,10 +44,7 @@ const CoursePopularComponent: React.FC = () => {
             numberLesson: "18",
             titleLesson: "Lessons"
         },
-    ]
-
-
-
+    ];
 
     return (
         <View style={styles.container}>

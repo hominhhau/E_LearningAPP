@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 import { View, StyleSheet } from "react-native";
 import LessonItem from "./Lesson/LessonItem";
 import { Video } from 'expo-av';
@@ -10,7 +10,7 @@ interface LessonFinalProps {
     onSelectVideo: (videoLink: string) => void;
 }
 
-    const LessonFinal: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
+    const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null); // Thay ađổi kiểu dữ liệu
 
   const dataLesson = [
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LessonFinal;
+export default LessonFinalCart;
