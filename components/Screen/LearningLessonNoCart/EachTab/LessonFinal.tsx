@@ -19,8 +19,8 @@ interface LessonFinalProps {
       index: 1,
       title: "How to learn SQL for free | Roadmap to learning SQL",
       duration: "27:19 mins",
-      isCompleted: true,
-      videoLink: "https://drive.google.com/file/d/1Lxhe8akgIFf0KdPUHpH0VOba1Ccu5ieG/view",
+      isCompleted: false,
+      videoLink: "https://drive.google.com/file/d/1Lxhe8akgIFf0KdPUHpH0VOba1Ccu5ieG/preview",
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ interface LessonFinalProps {
       title: "Learn What is Database _ Types of Database _ DBMS",
       duration: "12:10 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1ubWgB0bVVncVVmV_0R9gJYCwNQnp7S4L/view",
+      videoLink: "https://drive.google.com/file/d/1ubWgB0bVVncVVmV_0R9gJYCwNQnp7S4L/preview",
     },
     {
       id: 3,
@@ -36,7 +36,7 @@ interface LessonFinalProps {
       title: "How to install PostgreSQL on Mac OS _ Install and Uninstall PostgreSQL Database",
       duration: "20:50 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1LvBK1CUdZr5rTgNIvDZDO8e9eN6ewvsz/view",
+      videoLink: "https://drive.google.com/file/d/1LvBK1CUdZr5rTgNIvDZDO8e9eN6ewvsz/preview",
     },
     {
       id: 4,
@@ -44,7 +44,7 @@ interface LessonFinalProps {
       title: "SQL Basics Tutorial for Beginners (Practice SQL Queries)",
       duration: "01:10:20 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1G1uFqmuaqokYtNBc9e8aOHOLQWgC2zuT/view",
+      videoLink: "https://drive.google.com/file/d/1G1uFqmuaqokYtNBc9e8aOHOLQWgC2zuT/preview",
     },
     {
       id: 5,
@@ -52,7 +52,7 @@ interface LessonFinalProps {
       title: "SQL JOINS Tutorial for beginners  Practice SQL Queries using JOINS - Part 1",
       duration: "35:22 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/14e41WoR3COhNMQwEh6aGYv-eLXXhHwox/view",
+      videoLink: "https://drive.google.com/file/d/14e41WoR3COhNMQwEh6aGYv-eLXXhHwox/preview",
     },
     {
       id: 6,
@@ -60,7 +60,7 @@ interface LessonFinalProps {
       title: "SQL JOINS Tutorial for beginners | Practice SQL Queries using JOINS - Part 2",
       duration: "29:57 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1TRksXc2wsB0hpmNIkVvN3KM22giTrAb8/view",
+      videoLink: "https://drive.google.com/file/d/1TRksXc2wsB0hpmNIkVvN3KM22giTrAb8/preview",
     },
     {
       id: 7,
@@ -68,7 +68,7 @@ interface LessonFinalProps {
       title: "Subquery in SQL _ Correlated Subquery + Complete SQL Subqueries Tutorial",
       duration: "01:10:43 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1SYbBtpQ88PUnhy5T1qequGaizhd31LGK/view",
+      videoLink: "https://drive.google.com/file/d/1SYbBtpQ88PUnhy5T1qequGaizhd31LGK/preview",
     },
     {
       id: 8,
@@ -76,7 +76,7 @@ interface LessonFinalProps {
       title: "SQL WITH Clause | How to write SQL Queries using WITH Clause | SQL CTE (Common Table Expression)",
       duration: "24:47 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1zQq4188wtbJ4HXE1IeUsZ--l0PgLEDni/view",
+      videoLink: "https://drive.google.com/file/d/1zQq4188wtbJ4HXE1IeUsZ--l0PgLEDni/preview",
     },
     {
       id: 9,
@@ -84,7 +84,7 @@ interface LessonFinalProps {
       title: "SQL Window Function _ How to write SQL Query using RANK, DENSE RANK, LEAD_LAG _ SQL Queries Tutorial",
       duration: "24:54 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/13LGg7bnVDSskO3oH7oHCtdSw_VAzj7oB/view",
+      videoLink: "https://drive.google.com/file/d/13LGg7bnVDSskO3oH7oHCtdSw_VAzj7oB/preview",
     },
     {
       id: 10,
@@ -92,7 +92,7 @@ interface LessonFinalProps {
       title: "SQL Window Function _ How to write SQL Query using Frame Clause, CUME_DIST _ SQL Queries Tutorial",
       duration: "54:30 mins",
       isCompleted: false,
-      videoLink: "https://drive.google.com/file/d/1zQa67Aji9hMPiI7K5g6fCP7DowW2kgIU/view",
+      videoLink: "https://drive.google.com/file/d/1zQa67Aji9hMPiI7K5g6fCP7DowW2kgIU/preview",
     },
 
   ];
@@ -109,6 +109,7 @@ interface LessonFinalProps {
             title={item.title}
             duration={item.duration}
             isCompleted={item.isCompleted}
+            isLocked={true}
             onPress={() => handleVideoSelect(item.videoLink)}
         />
     ))}
