@@ -100,16 +100,16 @@ import ChatBubble from '../components/Screen/ChatBotScreen/ChatBubble.tsx'
 //         //<GeneralTabBar />
 //         //<CourseComponent />
 
-        //<OverviewFinal />
-        //<CategoryComponent />
-        //<CoursePopularComponent />
-        //<TopTeacherComponent />
-        //<HeaderAdvertisementComponent />
-        //<HeaderComponent />
-        //<Home />
-        //<CourseThatInspiresComponent />
-        //<RecommendedForYouComponent />
-        //<TabBarMyCourse />
+//<OverviewFinal />
+//<CategoryComponent />
+//<CoursePopularComponent />
+//<TopTeacherComponent />
+//<HeaderAdvertisementComponent />
+//<HeaderComponent />
+//<Home />
+//<CourseThatInspiresComponent />
+//<RecommendedForYouComponent />
+//<TabBarMyCourse />
 
 //         //<HeaderMyCourse />
 //         //<HeaderAdvertisementCourse />
@@ -118,11 +118,11 @@ import ChatBubble from '../components/Screen/ChatBotScreen/ChatBubble.tsx'
 
 //         //<FindComponent />
 
-        //<HotTopicComponent />
+//<HotTopicComponent />
 
-        <ChatBubble />
+//         <ChatBubble />
 
-    );
-};
+//     );
+// };
 
 
