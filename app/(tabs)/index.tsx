@@ -87,7 +87,7 @@ export default function App() {
     </NavigationContainer>
   );
 }
-// Tab Navigator cho Home, MyCourse, Search
+// Tab Navigator cho Home, MyCourse, Search, Profile
 function MainTabNavigator() {
     return (
       <Tab.Navigator
