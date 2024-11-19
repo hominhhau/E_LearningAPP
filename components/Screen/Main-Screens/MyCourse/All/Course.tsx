@@ -6,9 +6,10 @@ type CoursesProcessProps = {
     title: string; 
     time: string; 
     processPercentage: number; 
+    onPress?: () => void;
 };
 
-const CoursesProcess: React.FC<CoursesProcessProps> = ({ image, title, time, processPercentage }) => {
+const CoursesProcess: React.FC<CoursesProcessProps> = ({ image, title, time, processPercentage, onPress }) => {
     return (
         <View style={styles.container}>
             <Image source={image} style={styles.image} />
