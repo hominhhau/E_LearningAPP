@@ -16,6 +16,7 @@ import OverviewFinal from "./EachTab/OverviewFinal";
 import { Video } from "expo-av";
 import YouTube from "react-native-youtube-iframe";
 import { WebView } from "react-native-webview";
+import AddToCart from "@/components/Button/AddToCart";
 
 const LessonNoCart: React.FC = () => {
   const [activeTab, setActiveTab] = useState("LESSON");
@@ -27,7 +28,6 @@ const LessonNoCart: React.FC = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
           <TopNavigationBar
@@ -63,6 +63,7 @@ const LessonNoCart: React.FC = () => {
         >
           {activeTab === "OVERVIEW" && (
             <OverviewFinal />
+            
           )}
           {activeTab === "LESSON" && (
             <View style={styles.lesson}>
@@ -71,7 +72,7 @@ const LessonNoCart: React.FC = () => {
           )}
         </ScrollView>
       </View>
-    </ScrollView>
+    
   );
 };
 
