@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 // http://192.168.1.100:6002
-const BASE_URL = 'http://172.16.0.104:6002';
+const BASE_URL = 'http://172.16.0.134:6002';
 
 // Tạo một instance Axios với cấu hình mặc định
 const axiosInstance = axios.create({
@@ -39,4 +39,5 @@ export const ApiManager = {
 
 
 // test xem có connect được với server không
+
 

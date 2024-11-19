@@ -1,11 +1,26 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';  // Thêm useState
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import ArrowBack from '@/components/Button/Arrow-back';
 import NameInputNoIcon from '@/components/TextInputNoIcon/TextInputNoIcon';
 import Button from '@/components/Button/Button';
+import { Api_Auth } from '../../../apis/Api_Auth';  // Import API
 
 const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+  const [email, setEmail] = useState('');  // State để lưu email
+
+  
+  const handleSendCode = async () => {
+    try {
+      await Api_Auth.forgotPassword(email);  // Gọi API quên mật khẩu
+      alert('Mã reset mật khẩu đã được gửi đến email của bạn.');
+      navigation.navigate('EnterCodeForgotPassword');  // Chuyển hướng sau khi gửi thành công
+    } catch (error) {
+      console.error('Có lỗi xảy ra:', error);
+      alert('Có lỗi xảy ra khi gửi mã quên mật khẩu.');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerIcon}>
@@ -22,23 +37,24 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
       </View>
 
       <View style={styles.inputContainer}>
-        <NameInputNoIcon placeholder="Enter email" />
-        
+        <NameInputNoIcon 
+          placeholder="Enter email" 
+          value={email}  // Gán giá trị email cho TextInput
+          onChangeText={setEmail}  // Cập nhật state khi thay đổi
+        />
       </View>
 
       <View style={styles.buttonContainer}>
         <Button
-        text="Send code"
-        backgroundColor="#00bdd6"
-        textColor="#ffffff"
-        width={350}
-        onPress={() => {
-          navigation.navigate('EnterCodeForgotPassword');
-        }}
+          text="Send code"
+          backgroundColor="#00bdd6"
+          textColor="#ffffff"
+          width={350}
+          onPress={handleSendCode}  // Gọi hàm gửi mã khi nhấn nút
         />
       </View>
 
-      <TouchableOpacity onPress={()=>{
+      <TouchableOpacity onPress={() => {
         navigation.navigate('Login');
       }}>
         <Text style={styles.loginText}>
@@ -54,11 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#fff',
-  },
-  icon: {
-    width: 34,
-    height: 26,
-    marginBottom: 40,
   },
   headerIcon: {
     marginBottom: 40,
