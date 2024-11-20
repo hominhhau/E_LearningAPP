@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 // http://192.168.1.100:6002
-const BASE_URL = 'http://172.16.0.47:6002';
+const BASE_URL = 'http://172.16.0.196:6002';
 
 // Tạo một instance Axios với cấu hình mặc định
 const axiosInstance = axios.create({

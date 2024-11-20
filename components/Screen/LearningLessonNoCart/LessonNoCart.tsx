@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     tabBarContainer:{
         padding: 10,
     },
-
 });
 
 export default LessonNoCart;
