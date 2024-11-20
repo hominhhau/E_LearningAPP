@@ -3,6 +3,9 @@ import { View, StyleSheet } from "react-native";
 import CoursesProcess from "./Course";
 import { Api_Course } from "@/apis/Api_Course";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "@/components/navigation/assets/types";
+
 
 type CoursesProcessComponentProps = {
   activeTab: string;
@@ -14,6 +17,7 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
   const [dataCourses, setDataCourses] = useState<any[]>([]);
   const user = useSelector((state: any) => state.user.user);
   const userId = user?.userID;
+  const navigation = useNavigation<RootStackParamList>();
 
   const handleLoadData = async () => {
     console.log("userId", userId);
@@ -65,6 +69,10 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
     return false;
   });
 
+  const handleCoursePress = (courseTitle: String) => {
+    navigation.navigate("LessonCart",{ courseTitle });
+  };
+
   return (
     <View style={styles.container}>
       {filteredCourses.map((course) => (
@@ -74,6 +82,7 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
             title={course.title}
             time={course.time}
             processPercentage={course.processPercentage}
+            onPress={() => {handleCoursePress(course.title)}}
           />
         </View>
       ))}

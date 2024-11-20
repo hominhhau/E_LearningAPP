@@ -19,7 +19,7 @@ const CoursesProcess: React.FC<CoursesProcessProps> = ({
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => console.log("Học")}
+      onPress={onPress}
     >
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.infoContainer}>

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
 // Định nghĩa kiểu cho các tab
-type TabBarCardProps = {};
+type TabBarCardProps = {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+};
 
-// Component TabBarCard
-const TabBarCard: React.FC<TabBarCardProps> = () => {
-  const [activeTab, setActiveTab] = useState('LESSONS');
+const TabBarCard: React.FC<TabBarCardProps> = ({ activeTab, setActiveTab}) => {
+  //const [activeTab, setActiveTab] = useState('LESSONS');
 
   return (
     <View style={styles.container}>

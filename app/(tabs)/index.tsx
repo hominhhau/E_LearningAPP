@@ -20,6 +20,9 @@ import Search from "@/components/Screen/Main-Screens/Search";
 import store from "@/redux/store";
 import { Provider } from "react-redux";
 
+import CoursesProcessComponent from "@/components/Screen/Main-Screens/MyCourse/All/CourseProcessComponent";
+import LessonCart from "@/components/Screen/LearningLessonCart/LessonCart";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -84,6 +87,16 @@ export default function App() {
             component={MainTabNavigator}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="CoursesProcessComponent"
+            component={(props: any) => <CoursesProcessComponent {...props} activeTab="ALL" />}
+            options={{ headerShown: false }}
+          />
+            <Stack.Screen
+                name="LessonCart"
+                component={LessonCart}
+                options={{ headerShown: false }}
+            />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
@@ -130,3 +143,4 @@ function MainTabNavigator() {
     </Tab.Navigator>
   );
 }
+

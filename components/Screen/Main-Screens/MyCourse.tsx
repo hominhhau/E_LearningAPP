@@ -11,14 +11,14 @@ const MyCourse: React.FC = () => {
   // Quản lý trạng thái tab hiện tại
   const [activeTab, setActiveTab] = useState("ALL");
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <HeaderMyCourse />
-        <HeaderAdvertisementCourse />
-        <TabBarMyCourse activeTab={activeTab} setActiveTab={setActiveTab} />
-      </View>
 
+    return (
+        <View style={styles.container}>
+            <View style={styles.headerContainer}>
+                <HeaderMyCourse />
+                <HeaderAdvertisementCourse />
+                <TabBarMyCourse activeTab={activeTab} setActiveTab={setActiveTab} />
+            </View>
       <ScrollView
         contentContainerStyle={[styles.content, { paddingBottom: 80 }]}
       >
@@ -47,23 +47,28 @@ const MyCourse: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f5f5f5",
-  },
-  adContainer: {
-    marginTop: 10,
-    zIndex: 0, // Đảm bảo quảng cáo không đè lên nội dung khác
-  },
-  scrollContent: {
-    paddingBottom: 70, // Tránh che nội dung bởi GeneralTabBar
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#f5f5f5',
+      },
+      adContainer: {
+        marginTop: 10,
+        zIndex: 0, 
+      },
+      scrollContent: {
+        paddingBottom: 70, 
+      },
 
-  headerContainer: {
-    zIndex: 1, // Đảm bảo HeaderMyCourse luôn hiển thị trên cùng
-  },
-  content: {},
-  all: {},
+      headerContainer: {
+        zIndex: 1,
+      },
+      content:{
+
+        
+      }, 
+      all:{
+        
+      }
 });
 
 export default MyCourse;
