@@ -52,12 +52,12 @@ const Stack = createStackNavigator<RootStackParamList>();
  export default function App() {
      return (
 
-     <NavigationContainer>
+
      <Stack.Navigator initialRouteName="LessonNoCart">
          <Stack.Screen name="LessonNoCart" component={LessonNoCard} />
          <Stack.Screen name="Cart" component={Cart} />
      </Stack.Navigator>
- </NavigationContainer>
+
     );
  };
 
