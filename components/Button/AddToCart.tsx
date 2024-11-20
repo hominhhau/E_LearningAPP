@@ -9,6 +9,7 @@ type AddToCartProps = {
     backgroundColor?: string;
     textColor?: string;
     width?: number;
+    onPress?: () => void;
 }
 
 const AddToCart: React.FC<AddToCartProps> = ({ 
@@ -17,10 +18,13 @@ const AddToCart: React.FC<AddToCartProps> = ({
     backgroundColor = '#00bdd6',
     textColor = '#ffffff',
     width = 100,
+    onPress
   
 }) => {
     return (
-        <TouchableOpacity style={[style.button, { backgroundColor, width }]}>
+        <TouchableOpacity 
+        style={[style.button, { backgroundColor, width }]}
+        onPress={onPress}>
             <Ionicons name={icon as any} size={24} color={textColor} />
             <Text style={[style.text, { color: textColor }]}>{text}</Text>
         </TouchableOpacity>   

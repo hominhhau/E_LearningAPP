@@ -13,7 +13,7 @@
 // // import GoogleLogoIcon from '@/assets/Icon/GoogleLogoIcon';
 // // import Register from '@/components/Screen/Auth-Screens/Register';
 // // import LessonCard from '../components/Screen/LearningLessonCart/LessonCart.tsx'
-// import LessonNoCard from '../components/Screen/LearningLessonNoCart/LessonNoCart.tsx'
+ import LessonNoCard from '../components/Screen/LearningLessonNoCart/LessonNoCart'
 // // import CreateAccountScreen from '../components/Screen/Auth-Screens/Register.tsx'
 // //08.10.2024
 // // import TeacherProfile from '../components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile.tsx'
@@ -42,90 +42,22 @@
 // import CertificateForm from '../components/Screen/Certificate/CertificateForm.tsx'
 //import User from '../components/Screen/Main-Screens/UserProfile/User.tsx'
 //7.11.2024
-import Cart from '../components/Screen/Cart/Cart.tsx'
+import Cart from '../components/Screen/Cart/Cart'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { RootStackParamList } from '@/components/navigation/types';
+//const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
  export default function App() {
      return (
-//         // <ParallaxScrollView
-//         //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-//         //   headerImage={
-//         //     <Image
-//         //       source={require('@/assets/images/partial-react-logo.png')}
-//         //       style={styles.reactLogo}
-//         //     />
-//         //   }>
-//         //   <ThemedView style={styles.titleContainer}>
-//         //     <ThemedText type="title">Welcome!</ThemedText>
-//         //     <HelloWave />
-//         //   </ThemedView>
-//         //   <ThemedView style={styles.stepContainer}>
-//         //     <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-//         //     <ThemedText>
-//         //       Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-//         //       Press{' '}
-//         //       <ThemedText type="defaultSemiBold">
-//         //         {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-//         //       </ThemedText>{' '}
-//         //       to open developer tools.
-//         //     </ThemedText>
-//         //   </ThemedView>
-//         //   <ThemedView style={styles.stepContainer}>
-//         //     <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-//         //     <ThemedText>
-//         //       Tap the Explore tab to learn more about what's included in this starter app.
-//         //     </ThemedText>
-//         //   </ThemedView>
-//         //   <ThemedView style={styles.stepContainer}>
-//         //     <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-//         //     <ThemedText>
-//         //       When you're ready, run{' '}
-//         //       <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-//         //       <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-//         //       <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-//         //       <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-//         //     </ThemedText>
-//         //   </ThemedView>
-//         // </ParallaxScrollView>
 
-//         //<WelcomeScreen />
-//         //<CreateNewPassword />
-//         //<ResetPassword />
-//         //<PasswordChanged />
-//         //<ForgotPassword />
-//         //<EnterCodeForgotPassword />
-//         //<Login />
-//         //<GoogleLogoIcon />
-//         //<Register />
-//         //<LessonNoCard />
-//         //<CreateAccountScreen />
-//         //<TeacherProfile />
-//         //<BenefitContainer />
-//         //<GeneralTabBar />
-//         //<CourseComponent />
-
-//         //<OverviewFinal />
-//         //<CategoryComponent />
-//         //<CoursePopularComponent />
-//         //<TopTeacherComponent />
-//         //<HeaderAdvertisementComponent />
-//         //<HeaderComponent />
-//         //<Home />
-//         //<CourseThatInspiresComponent />
-//         //<RecommendedForYouComponent />
-//         //<TabBarMyCourse />
-
-//         //<HeaderMyCourse />
-//         //<HeaderAdvertisementCourse />
-//         //<MyCourse />
-//         //<CoursesProcessComponent />
-
-//         //<FindComponent />
-
-//         //<HotTopicComponent />
-
-//         //<CertificateForm />
-         //<User/>
-           <Cart/>
+     <NavigationContainer>
+     <Stack.Navigator initialRouteName="LessonNoCart">
+         <Stack.Screen name="LessonNoCart" component={LessonNoCard} />
+         <Stack.Screen name="Cart" component={Cart} />
+     </Stack.Navigator>
+ </NavigationContainer>
     );
  };
 

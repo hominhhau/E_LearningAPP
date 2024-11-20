@@ -12,6 +12,7 @@ type CourseProps = {
     onIconLesson: () => void;
     textIconLesson: string; // For number of lessons
     onIconBookmarkPress: () => void;
+    onPress?: () => void;
 };
 
 const Course: React.FC<CourseProps> = ({
@@ -24,6 +25,7 @@ const Course: React.FC<CourseProps> = ({
     onIconLesson,
     textIconLesson,
     onIconBookmarkPress,
+    onPress
 }) => {
     const [isStarred, setIsStarred] = useState(false); // State for star
     const [isBookmarked, setIsBookmarked] = useState(false); // State for bookmark
@@ -41,6 +43,7 @@ const Course: React.FC<CourseProps> = ({
     };
 
     return (
+        <TouchableOpacity onPress={() => console.log('course')}>
         <View style={styles.container}>
             {/* Course Image */}
             <Image source={imageCourse} style={styles.image} />
@@ -80,6 +83,7 @@ const Course: React.FC<CourseProps> = ({
                 />
             </TouchableOpacity>
         </View>
+        </TouchableOpacity>
     );
 };
 
