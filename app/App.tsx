@@ -1,7 +1,14 @@
 // import React from "react";
 // import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // import { Ionicons } from "@expo/vector-icons";
+// import React from "react";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { Ionicons } from "@expo/vector-icons";
 
+// // Import các màn hình
+// import Home from "../components/Screen/Main-Screens/Home";
+// import MyCourse from "../components/Screen/Main-Screens/MyCourse";
+// import Search from "../components/Screen/Main-Screens/Search";
 // // Import các màn hình
 // import Home from "../components/Screen/Main-Screens/Home";
 // import MyCourse from "../components/Screen/Main-Screens/MyCourse";

@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { Alert } from 'react-native';
 import React, {useState} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import ArrowBack from '@/components/Button/Arrow-back';
@@ -7,7 +8,7 @@ import Button from '@/components/Button/Button';
 import { Api_Auth } from '../../../apis/Api_Auth';
 
 const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(''); 
   return (
     <View style={styles.container}>
       <View style={styles.headerIcon}>
@@ -28,7 +29,6 @@ const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigati
         placeholder="Enter code"
         value={code}
         onChangeText={setCode}
-
          />
         
       </View>
@@ -39,9 +39,7 @@ const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigati
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
-        onPress={() => {
-          navigation.navigate('CreateNewPassword',  { code } );
-        }}
+        onPress={navigation.navigate('CreateNewPassword', {code})}
         />
       </View>
     </View>
