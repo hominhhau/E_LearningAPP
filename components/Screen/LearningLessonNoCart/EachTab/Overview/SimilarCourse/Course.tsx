@@ -43,7 +43,7 @@ const Course: React.FC<CourseProps> = ({
     };
 
     return (
-        <TouchableOpacity onPress={() => console.log('course')}>
+        <TouchableOpacity onPress={onPress}>
         <View style={styles.container}>
             {/* Course Image */}
             <Image source={imageCourse} style={styles.image} />

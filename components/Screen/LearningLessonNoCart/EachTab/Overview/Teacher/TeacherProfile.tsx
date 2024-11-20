@@ -2,10 +2,31 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import UserProfile from './UserProfile';
 import ButtonCustomer from '@/components/Screen/LearningLessonNoCart/EachTab/Overview/ButtonCustom/ButtonCus';
+import { RouteProp, useRoute } from '@react-navigation/native'; 
+import { RootStackParamList } from '@/components/navigation/types'; 
 
-const TeacherProfile: React.FC = () => {
+type TeacherProfileRouteProp = RouteProp<RootStackParamList, 'LessonNoCart'>;
+
+const TeacherProfile: React.FC= () => {
     const [showFullText, setShowFullText] = useState(false);
 
+    const route = useRoute<TeacherProfileRouteProp>();
+    const nameTeacher = route.params?.nameTeacher;
+
+    // const dataTeacher = [
+    //     {
+    //         id: 1,
+    //         imageTeacher: require('../../../../../../assets/images/ImageTeacher.png'),
+    //         nameTeacher: "Sara Weise",
+    //         role: "UI/UX Designer",
+    //     },
+    //     {
+    //         id: 2,
+    //         imageTeacher: require('../../../../../../assets/images/ImageTeacher.png'),
+    //         nameTeacher: "John Doe",
+    //         role: "Web Developer",
+    //     },
+    // ]
     const description = `Knowledgeable in UX design (such as user research, user behavior, user journey)
     and UI (interface design, visual design principles, color theory, typography).
     Capable of conveying complex concepts in an easy-to-understand manner, 
@@ -17,10 +38,10 @@ const TeacherProfile: React.FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.profileContainer}>
-                <UserProfile 
-                    imageTeacher={require('../../../../../../assets/images/ImageTeacher.png')} 
-                    nameTeacher="Sara Weise" 
-                    role="UI/UX Designer"
+                <UserProfile
+                    imageTeacher={require('../../../../../../assets/images/ImageTeacher.png')}
+                    nameTeacher={nameTeacher}
+                    role={"UI/UX Designer"}
                 />
                 <ButtonCustomer
                     text="Follow"

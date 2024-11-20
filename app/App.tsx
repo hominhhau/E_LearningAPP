@@ -26,7 +26,6 @@
 // import TopTeacherComponent from '../components/Screen/Main-Screens/Home/TopTeacher/TopTeacherComponent.tsx';
 // import HeaderAdvertisementComponent from '../components/Screen/Main-Screens/Home/Advertisement/HeaderAdvertisementComponent.tsx'
 // import HeaderComponent from '../components/Screen/Main-Screens/Home/Header/HeaderComponent.tsx'
-// import Home from '../components/Screen/Main-Screens/Home.tsx';
 // import CourseThatInspiresComponent from '../components/Screen/Main-Screens/Home/CourseThatInspires/CourseThatInspiresComponent.tsx'
 // import RecommendedForYouComponent from '../components/Screen/Main-Screens/Home/RecommendedForYou/RecommendedForYouComponent.tsx'
 // //17.10.2024
@@ -46,6 +45,10 @@ import Cart from '../components/Screen/Cart/Cart'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from '@/components/navigation/types';
+import CourseThatInspiresComponent from '@/components/Screen/Main-Screens/Home/CourseThatInspires/CourseThatInspiresComponent';
+import LessonNoCart from '@/components/Screen/LearningLessonNoCart/LessonNoCart';
+import Home from '../components/Screen/Main-Screens/Home';
+import TeacherProfile from '@/components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile';
 //const Stack = createStackNavigator();
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -53,10 +56,19 @@ const Stack = createStackNavigator<RootStackParamList>();
      return (
 
 
-     <Stack.Navigator initialRouteName="LessonNoCart">
-         <Stack.Screen name="LessonNoCart" component={LessonNoCard} />
-         <Stack.Screen name="Cart" component={Cart} />
-     </Stack.Navigator>
+    //     <NavigationContainer>
+    //  <Stack.Navigator initialRouteName="LessonNoCart">
+    //      <Stack.Screen name="LessonNoCart" component={LessonNoCard} />
+    //      <Stack.Screen name="Cart" component={Cart} />
+    //  </Stack.Navigator>
+    //  </NavigationContainer>
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName="Home">
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="LessonNoCart" component={LessonNoCart} />
+      <Stack.Screen name="Cart" component={Cart} />
+    </Stack.Navigator>
+  </NavigationContainer>
 
     );
  };

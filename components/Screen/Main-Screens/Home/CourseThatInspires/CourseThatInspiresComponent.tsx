@@ -2,8 +2,14 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Courses from '@/components/Screen/LearningLessonNoCart/EachTab/Overview/SimilarCourse/Course'
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import  {RootStackParamList} from '@/components/navigation/types';
+
+type NavigationProp = StackNavigationProp<RootStackParamList, 'LessonNoCart'>;
 
 const CourseThatInspiresComponent: React.FC = () => {
+    const navigation = useNavigation<NavigationProp>();
     const coursesData = [
         {
             id: 1,
@@ -62,6 +68,13 @@ const CourseThatInspiresComponent: React.FC = () => {
                     onIconLesson={course.onIconLesson}
                     textIconLesson={course.textIconLesson}
                     onIconBookmarkPress={course.onIconBookmarkPress}
+                    onPress={() => 
+                        navigation.navigate('LessonNoCart', {
+                            nameCourse: course.nameCourse,
+                            nameTeacher: course.nameTeacher,
+                        })
+                      }
+
                 />
             ))}
            
