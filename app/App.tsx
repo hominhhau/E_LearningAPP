@@ -55,20 +55,12 @@ const Stack = createStackNavigator<RootStackParamList>();
  export default function App() {
      return (
 
-
-    //     <NavigationContainer>
-    //  <Stack.Navigator initialRouteName="LessonNoCart">
-    //      <Stack.Screen name="LessonNoCart" component={LessonNoCard} />
-    //      <Stack.Screen name="Cart" component={Cart} />
-    //  </Stack.Navigator>
-    //  </NavigationContainer>
-    <NavigationContainer>
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="LessonNoCart" component={LessonNoCart} />
       <Stack.Screen name="Cart" component={Cart} />
     </Stack.Navigator>
-  </NavigationContainer>
+
 
     );
  };
