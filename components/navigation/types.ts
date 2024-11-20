@@ -4,10 +4,8 @@ export type RootStackParamList = {
     LessonNoCart: {
         nameCourse: string;
         nameTeacher: string;
-        imageCourse: string;
-        price: number;
     }
-    Cart: { courseData: { nameCourse: string; imageCourse: string; price: number; } };
+    Cart: undefined;
     CourseThatInspiresComponent: undefined;
     Home: undefined;
     TeacherProfile: undefined;

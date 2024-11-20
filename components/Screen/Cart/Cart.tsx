@@ -12,15 +12,8 @@ type CartRouteProp = RouteProp<RootStackParamList, 'Cart'>;
 const Cart: React.FC = () =>{
      // Lấy thông tin từ route.params
   const route = useRoute<CartRouteProp>();
-  const courseData = route.params?.courseData;
-   // Kiểm tra nếu courseData không tồn tại
-   if (!courseData) {
-    return (
-      <View style={styles.container}>
-        <Text>No course data found!</Text>
-      </View>
-    );
-  }
+
+  
 
     return(
         <View style={styles.container}>
@@ -32,22 +25,7 @@ const Cart: React.FC = () =>{
                 <Text style={styles.countSum}>... item(s) in your cart</Text>
             </View>
             <View style={styles.cartItem}>
-                <Courses
-                    nameCourse={courseData.nameCourse}
-                    imageCourse={courseData.imageCourse}
-                    price={courseData.price.toString()} 
-                    nameTeacher={''} 
-                    onIconStarPress={function (): void {
-                        throw new Error('Function not implemented.');
-                    } } 
-                    textIcon={''} 
-                    onIconLesson={function (): void {
-                        throw new Error('Function not implemented.');
-                    } } 
-                    textIconLesson={''} onIconBookmarkPress={function (): void {
-                        throw new Error('Function not implemented.');
-                    } }                    
-                    />
+                
             </View>
             <View style={styles.discountContainer}>
                 <TextInput
@@ -62,7 +40,7 @@ const Cart: React.FC = () =>{
                 <Text style={styles.paymentText}>Payment Summary</Text>
                 <View style={styles.summaryRow}>
                     <Text style={styles.summaryLabel}>Order Total</Text>
-                    <Text style={styles.summaryValue}>${courseData.price}</Text>
+                    <Text style={styles.summaryValue}>$0</Text>
                 </View>
                 <View style={styles.summaryRow}>
                     <Text style={styles.summaryLabel}>Items Discount</Text>
@@ -74,7 +52,7 @@ const Cart: React.FC = () =>{
                 </View>
                 <View style={styles.totalRow}>
                     <Text style={styles.totalLabel}>Total</Text>
-                    <Text style={styles.totalValue}>${courseData.price}</Text>
+                    <Text style={styles.totalValue}>$0</Text>
                 </View>
             </View>
         </View>
