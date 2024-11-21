@@ -16,10 +16,8 @@ const CourseThatInspiresComponent: React.FC = () => {
             imageCourse: require('../../../../../assets/images/ImageDigitalPortrait.png'),
             nameCourse: "Digital Portrait",
             nameTeacher: "Ramono Wultschner",
-            price: "$67",
-            onIconStarPress: () => { console.log('Star Pressed'); },
+            price: 67,
             textIcon: "4.5",
-            onIconLesson: () => { console.log('Lesson Icon Pressed'); },
             textIconLesson: "12 Lessons",
             onIconBookmarkPress: () => { console.log('Bookmark Pressed'); },
         },
@@ -28,10 +26,8 @@ const CourseThatInspiresComponent: React.FC = () => {
             imageCourse: require('../../../../../assets/images/ImageDigitalPortrait.png'),
             nameCourse: "Graphic Design Basics",
             nameTeacher: "Alice Smith",
-            price: "$49",
-            onIconStarPress: () => { console.log('Star Pressed for Graphic Design'); },
+            price: 49,
             textIcon: "4.8",
-            onIconLesson: () => { console.log('Lesson Icon Pressed for Graphic Design'); },
             textIconLesson: "10 Lessons",
             onIconBookmarkPress: () => { console.log('Bookmark Pressed for Graphic Design'); },
         },
@@ -40,10 +36,8 @@ const CourseThatInspiresComponent: React.FC = () => {
             imageCourse: require('../../../../../assets/images/ImageDigitalPortrait.png'),
             nameCourse: "Advanced Photoshop Techniques",
             nameTeacher: "John Doe",
-            price: "$89",
-            onIconStarPress: () => { console.log('Star Pressed for Photoshop'); },
+            price: 89,
             textIcon: "4.7",
-            onIconLesson: () => { console.log('Lesson Icon Pressed for Photoshop'); },
             textIconLesson: "8 Lessons",
             onIconBookmarkPress: () => { console.log('Bookmark Pressed for Photoshop'); },
         },
@@ -62,16 +56,16 @@ const CourseThatInspiresComponent: React.FC = () => {
                     imageCourse={course.imageCourse}
                     nameCourse={course.nameCourse}
                     nameTeacher={course.nameTeacher}
-                    price={course.price}
-                    onIconStarPress={course.onIconStarPress}
+                    price={course.price.toString()}
                     textIcon={course.textIcon}
-                    onIconLesson={course.onIconLesson}
                     textIconLesson={course.textIconLesson}
                     onIconBookmarkPress={course.onIconBookmarkPress}
                     onPress={() => 
                         navigation.navigate('LessonNoCart', {
+                            id: course.id,
                             nameCourse: course.nameCourse,
                             nameTeacher: course.nameTeacher,
+                            price: course.price,
                         })
                       }
 

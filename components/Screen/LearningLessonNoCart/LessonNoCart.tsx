@@ -28,7 +28,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 type LessonNoCartRouteProp = RouteProp<RootStackParamList, 'LessonNoCart'>;
 
 const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({ route }) => {
-  const { nameCourse }  = route.params;
+  const { nameCourse, price, id }  = route.params;
   
   const [activeTab, setActiveTab] = useState("OVERVIEW");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null); // Thay đổi kiểu dữ liệu
@@ -90,11 +90,18 @@ const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({ route }) => 
           backgroundColor="#00bdd6"
           textColor="#ffffff"
           //width={150}
-          price="$59"
+          price={price.toString()}
           discountPrice="80% off"
           onPress={() => {
             // Chuyển đến màn hình giỏ hàng và truyền khóa học
-            navigation.navigate('Cart');
+            navigation.navigate('Cart', {
+              cartItem:{
+                id: id,
+                title: nameCourse,
+                price: price,
+                imageUrl: "https://picsum.photos/200/300?grayscale",
+              }
+            });
           }}
         />
       </View>

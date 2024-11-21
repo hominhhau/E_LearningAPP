@@ -11,9 +11,7 @@ const CourseComponent: React.FC = () => {
                 nameCourse="Product Design" 
                 nameTeacher="Dennis Sweeney" 
                 price="$100" 
-                onIconStarPress={() => {console.log('Star Pressed')}} 
                 textIcon="4.5" 
-                onIconLesson={() => {}} 
                 textIconLesson="20 Lessons" 
                 onIconBookmarkPress={() => {console.log('Bookmark Pressed')}}
             />
@@ -23,9 +21,7 @@ const CourseComponent: React.FC = () => {
                 nameCourse="Palettes for Your App" 
                 nameTeacher="Ramono Wultschner" 
                 price="$59" 
-                onIconStarPress={() => {console.log('Star Pressed')}} 
                 textIcon="4.5" 
-                onIconLesson={() => {}} 
                 textIconLesson="20 Lessons" 
                 onIconBookmarkPress={() => {console.log('Bookmark Pressed')}}
             />
@@ -35,9 +31,7 @@ const CourseComponent: React.FC = () => {
                 nameCourse="Mobile UI Design" 
                 nameTeacher="Ramono Wultschner" 
                 price="$32" 
-                onIconStarPress={() => {console.log('Star Pressed')}} 
                 textIcon="4.5" 
-                onIconLesson={() => {}} 
                 textIconLesson="20 Lessons" 
                 onIconBookmarkPress={() => {console.log('Bookmark Pressed')}}
             />
