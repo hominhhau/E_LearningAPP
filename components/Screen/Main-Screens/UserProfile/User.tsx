@@ -99,6 +99,14 @@ const User = () => {
         <View style={styles.statisticalContainer}>
           <StatsGroup stats={stats} />
         </View>
+
+        <View>
+          <Text>Saved course</Text>
+        </View>
+
+        <View>
+          <Text>History buy course</Text>
+        </View>
       </View>
     </View>
   );
@@ -115,7 +123,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "relative",
     paddingBottom: 16,
-    backgroundColor: "pink",
+    //backgroundColor: "pink",
   },
   textHeader: {
     fontSize: 24,
@@ -164,6 +172,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 16,
     alignItems: "center",
+    justifyContent: "center",
   },
 });
 
