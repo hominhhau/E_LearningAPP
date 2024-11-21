@@ -18,4 +18,5 @@ export type RootStackParamList = {
     CourseThatInspiresComponent: undefined;
     Home: undefined;
     TeacherProfile: undefined;
+    HeaderComponent: undefined;
 };

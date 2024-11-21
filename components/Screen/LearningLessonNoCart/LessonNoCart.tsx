@@ -44,7 +44,7 @@ const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({ route }) => 
     <View style={styles.container}>
       <View style={styles.header}>
         <TopNavigationBar
-          onBackPress={() => {}}
+          onBackPress={() => navigation.goBack()}
           onBookmarkPress={() => {}}
           onMorePress={() => {}}
           titleHeader="UX Foundation"
