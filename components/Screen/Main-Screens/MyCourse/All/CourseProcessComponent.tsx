@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "@/components/navigation/assets/types";
 
-
 type CoursesProcessComponentProps = {
   activeTab: string;
 };
@@ -69,8 +68,8 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
     return false;
   });
 
-  const handleCoursePress = (courseTitle: String) => {
-    navigation.navigate("LessonCart",{ courseTitle });
+  const handleCoursePress = (courseTitle: String, courseID: String) => {
+    navigation.navigate("LessonCart", { courseTitle, courseID });
   };
 
   return (
@@ -82,7 +81,9 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
             title={course.title}
             time={course.time}
             processPercentage={course.processPercentage}
-            onPress={() => {handleCoursePress(course.title)}}
+            onPress={() => {
+              handleCoursePress(course.title, course.id);
+            }}
           />
         </View>
       ))}

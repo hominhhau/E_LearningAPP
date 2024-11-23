@@ -15,14 +15,19 @@ import TabBarCard from "../TabBar/TabBarCart";
 import LessonFinalCart from "./EachTab/LessonFinalCart";
 import ProjectFinalCart from "./EachTab/ProjectFinalCart";
 import QAFinalCart from "./EachTab/Q&AFinalCart";
-import { useRoute } from '@react-navigation/native';
+import { useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 const LessonCart: React.FC = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const [activeTab, setActiveTab] = useState("LESSON");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null); // Thay đổi kiểu dữ liệu
 
-  const { courseTitle } = route.params as { courseTitle: string };
+  const { courseTitle } = route.params as {
+    courseTitle: string;
+    courseID: string;
+  };
   const handleVideoSelect = (videoLink: string) => {
     setSelectedVideo(videoLink);
   };
@@ -31,7 +36,9 @@ const LessonCart: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TopNavigationBar
-          onBackPress={() => {}}
+          onBackPress={() => {
+            navigation.goBack();
+          }}
           onBookmarkPress={() => {}}
           onMorePress={() => {}}
           titleHeader="UX Foundation"
