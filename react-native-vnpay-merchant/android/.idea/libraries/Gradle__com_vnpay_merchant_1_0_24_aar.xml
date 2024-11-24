@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.vnpay:merchant:1.0.24@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d762d82c6308cb971bf2532b3495647e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d762d82c6308cb971bf2532b3495647e/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
