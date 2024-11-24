@@ -4,13 +4,51 @@ import { Ionicons } from '@expo/vector-icons';
 import NameInput from '@/components/TextInput/TextInput';
 import Button from '@/components/Button/Button';
 import ArrowBack from '@/components/Button/Arrow-back';
+import { useNavigation } from "@react-navigation/native";
+import { Alert } from 'react-native';
+import { Api_Auth } from '../../../apis/Api_Auth';
 
-const ResetPassword: React.FC = () => {
+const ResetPassword: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showNewPassword, setShowNewPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    //const navigation = useNavigation<any>();
+    const { email, resetToken } = route.params || {}; // Nhận email và resetToken từ `route.params`
+
+    console.log('Email in từ FE', email);  // In email từ frontend
+    console.log('Reset Token in từ FE:', resetToken); // In resetToken từ frontend
+    const handleResetPassword = async () => {
+      // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+      if (newPassword !== confirmPassword) {
+          Alert.alert("Mật khẩu không khớp", "Mật khẩu mới và mật khẩu xác nhận không khớp");
+          return;
+      }
   
+      if (newPassword.length < 6) {
+          Alert.alert("Mật khẩu quá ngắn", "Mật khẩu mới cần ít nhất 6 ký tự");
+          return;
+      }
+  
+      try {
+          //gui yeu cau toi API de kiem tra
+          const response = await Api_Auth.resetPassword(email, resetToken, newPassword);
+          //log phan hoi tu API de kiem tra
+          console.log("API Response:", response);
+          if (response.success) {
+              Alert.alert("Thành công", response.message);
+              // Chuyển ngay sang màn hình Login
+              navigation.navigate('Login');
+          } else {
+              Alert.alert("Lỗi", response.message || "Có lỗi xảy ra. Vui lòng thử lại.");
+          }
+      } catch (error) {
+          console.error("Reset Password Error:", error);
+          Alert.alert("Lỗi", "Có lỗi xảy ra khi đổi mật khẩu, vui lòng thử lại sau.");
+      }
+  };
+  
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
        <View style={styles.headerIcon}>
@@ -23,21 +61,25 @@ const ResetPassword: React.FC = () => {
 
       <View style={styles.inputContainer}>
         <NameInput
-        label="Old Password"
+        label="New Password"
         placeholder="Enter Password"
         iconName="lock-closed-outline"
         isPassword={true}
         showPassword={showNewPassword}
         togglePasswordVisibility={() => setShowNewPassword(!showNewPassword)}
+        value={newPassword}
+        onChangeText={setNewPassword}
         />
 
         <NameInput
-        label="New Password"
+        label="Confirm New Password"
         placeholder="Enter Password"
         iconName="lock-closed-outline"
         isPassword={true}
         showPassword={showConfirmPassword}
         togglePasswordVisibility={() => setShowConfirmPassword(!showConfirmPassword)}
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
         />
 
        
@@ -49,6 +91,7 @@ const ResetPassword: React.FC = () => {
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
+        onPress={handleResetPassword}
         />
       </View>
 

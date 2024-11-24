@@ -1,11 +1,38 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import { Alert } from 'react-native';
+import React, {useState} from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import ArrowBack from '@/components/Button/Arrow-back';
 import NameInputNoIcon from '@/components/TextInputNoIcon/TextInputNoIcon';
 import Button from '@/components/Button/Button';
+import { Api_Auth } from '../../../apis/Api_Auth';
 
-const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
+const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+  const [code, setCode] = useState(''); 
+  const { email } = route.params || {};  
+  if (!email) {
+    Alert.alert('Error', 'Không nhận được email');
+    return;
+  }
+  console.log('Email nhận được:', email); // In ra để kiểm tra
+  
+  console.log('Email:', email);  // In email từ frontend
+  console.log('Reset Token:', code);  // In mã reset từ frontend
+
+  const handleVerifyCode = async () => {
+    if (!email) {
+      Alert.alert('Error', 'Email không hợp lệ');
+      return;
+    }
+
+    try {
+      await Api_Auth.verifyResetToken({ email: email, resetToken: code });
+      navigation.navigate('ResetPassword', { email: email, resetToken: code });
+    } catch (error) {
+      Alert.alert('Error', 'Mã không đúng hoặc đã hết hạn');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerIcon}>
@@ -22,7 +49,11 @@ const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigati
       </View>
 
       <View style={styles.inputContainer}>
-        <NameInputNoIcon placeholder="Enter code" />
+        <NameInputNoIcon 
+        placeholder="Enter code"
+        value={code}
+        onChangeText={setCode}
+         />
         
       </View>
 
@@ -32,9 +63,7 @@ const EnterCodeForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigati
         backgroundColor="#00bdd6"
         textColor="#ffffff"
         width={350}
-        onPress={() => {
-          navigation.navigate('CreateNewPassword');
-        }}
+        onPress={handleVerifyCode}
         />
       </View>
     </View>

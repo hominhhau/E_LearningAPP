@@ -12,8 +12,8 @@ import { Ionicons } from "@expo/vector-icons";
 import NameInput from "@/components/TextInput/TextInput";
 import Button from "@/components/Button/Button";
 import ArrowBack from "@/components/Button/Arrow-back";
+import { Alert } from "react-native";
 import { Api_Auth } from "@/apis/Api_Auth";
-import axios from "axios";
 
 const PasswordScreen: React.FC<{ navigation: any; route: any }> = ({
   navigation,
@@ -26,6 +26,11 @@ const PasswordScreen: React.FC<{ navigation: any; route: any }> = ({
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleRegister = async () => {
+    // Kiểm tra mật khẩu
+  if (newPassword !== confirmPassword) {
+    Alert.alert('Password Mismatch', 'Passwords do not match. Please try again.');
+    return;
+  }
     try {
       const response = await Api_Auth.registerByPhone(
         fullName,
@@ -35,11 +40,17 @@ const PasswordScreen: React.FC<{ navigation: any; route: any }> = ({
         "",
         "learner"
       );
-      console.log("response", response);
+      console.log("Registration successful", response);
+
       // thêm sự kiện nếu không lỗi thì chuyển trang
       navigation.navigate("Login");
     } catch (error) {
-      console.log("error", error);
+      //console.log("error", error);
+      console.error("Error during registration:", error);
+    Alert.alert(
+      "Registration Failed",
+      (error as any).response?.data?.message || "An error occurred. Please try again."
+    );
     }
   };
 
