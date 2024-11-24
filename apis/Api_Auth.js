@@ -22,8 +22,17 @@ export const Api_Auth = {
     forgotPassword: async (email) => {
         return ApiManager.post('/forgot-password', { email });
     },
-    // reset mật khẩu
-    resetPassword: async (email, resetToken, newPassword) => {
+      // Verify reset token (optional, for validation)
+      verifyResetToken: async ({ email, resetToken} ) => {
+        return ApiManager.post('/verify-reset-token', { email, resetToken });
+    },
+      // Đặt mật khẩu mới sau khi xác nhận mã reset
+      resetPassword: async (email, resetToken, newPassword) => {
+        console.log('Emaillllll:', email);
+        console.log('Reset Tokennnnnn:', resetToken);
+        console.log('New Passwordddd:', newPassword);
         return ApiManager.post('/reset-password', { email, resetToken, newPassword });
-    }
+    },
+ 
+
 }
