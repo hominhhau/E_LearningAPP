@@ -17,6 +17,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Home from "@/components/Screen/Main-Screens/Home";
 import MyCourse from "@/components/Screen/Main-Screens/MyCourse";
 import Search from "@/components/Screen/Main-Screens/Search";
+import User from "@/components/Screen/Main-Screens/UserProfile/User";
 import store from "@/redux/store";
 import { Provider } from "react-redux";
 
@@ -137,6 +138,15 @@ function MainTabNavigator() {
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search-outline" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={User}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-outline" size={size} color={color} />
           ),
         }}
       />
