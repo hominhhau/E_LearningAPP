@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StatsGroup from "./Statistical";
-import * as ImagePicker from "expo-image-picker";
+// import * as ImagePicker from "expo-image-picker";
 //import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { RootStackParamList } from '../../../navigation/types';
 

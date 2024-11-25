@@ -9,6 +9,6 @@ export const Api_Course = {
     // getLessonsByCourse
     getLessonsByCourse: async (courseID) => {
         console.log('Api_Course.getLessonsByCourse', courseID);
-        return ApiManager.get(`/${courseID}`);
+        return ApiManager.post('/getLessonsByCourse', { courseID });
     },
 };
