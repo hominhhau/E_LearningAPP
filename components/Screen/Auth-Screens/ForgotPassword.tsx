@@ -11,10 +11,15 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }) => 
 
   
   const handleSendCode = async () => {
+    if (!email) {
+      alert('Vui lòng nhập email');
+      return;
+    }
     try {
+      console.log('Sending email:', email);  // Kiểm tra email trước khi gửi API
       await Api_Auth.forgotPassword(email);  // Gọi API quên mật khẩu
       alert('Mã reset mật khẩu đã được gửi đến email của bạn.');
-      navigation.navigate('EnterCodeForgotPassword');  // Chuyển hướng sau khi gửi thành công
+      navigation.navigate('EnterCodeForgotPassword', { email: email });  // Chuyển hướng sau khi gửi thành công
     } catch (error) {
       console.error('Có lỗi xảy ra:', error);
       alert('Có lỗi xảy ra khi gửi mã quên mật khẩu.');

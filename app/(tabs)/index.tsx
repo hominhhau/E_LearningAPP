@@ -24,6 +24,9 @@ import { Provider } from "react-redux";
 import CoursesProcessComponent from "@/components/Screen/Main-Screens/MyCourse/All/CourseProcessComponent";
 import LessonCart from "@/components/Screen/LearningLessonCart/LessonCart";
 
+//Setting
+import Setting from "@/components/Screen/Setting-Screens/Setting";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

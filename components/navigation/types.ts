@@ -20,4 +20,15 @@ export type RootStackParamList = {
     Home: undefined;
     TeacherProfile: undefined;
     HeaderComponent: undefined;
+    Setting: undefined;
+    Notification: undefined;
+    SettingGeneralComponent01: undefined;
+    Language: undefined;
+    Legal: undefined;
+    HelpAndSupport: undefined;
+    Security: undefined;
+    SettingGeneralComponent02: undefined;
+    User: undefined;
 };
+    
+

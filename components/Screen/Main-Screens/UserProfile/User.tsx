@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import StatsGroup from "./Statistical";
 import * as ImagePicker from "expo-image-picker";
 //import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { RootStackParamList } from '../../../navigation/types';
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../../constants/firebaseConfig"; // Import từ file config
@@ -68,11 +69,12 @@ const User: React.FC = () => {
     }
   };
 
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.textHeader}>User's profile</Text>
-        <TouchableOpacity onPress={() => console.log("More")} style={styles.icon}>
+        <TouchableOpacity onPress={() => console.log("more")} style={styles.icon}>
           <Ionicons name="ellipsis-horizontal-outline" size={32} color="#000" />
         </TouchableOpacity>
       </View>
