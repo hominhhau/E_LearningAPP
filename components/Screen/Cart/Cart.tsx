@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TouchableOpacity,
   View,
@@ -7,66 +7,85 @@ import {
   TextInput,
   FlatList,
   Image,
+  Linking,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ArrowBack from "@/components/Button/Arrow-back";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/components/navigation/types";
-import { useRoute } from "@react-navigation/native";
-import Courses from "@/components/Screen/LearningLessonNoCart/EachTab/Overview/SimilarCourse/Course";
-import { useNavigation } from "@react-navigation/native";
-import { ScrollView } from "react-native-gesture-handler";
+import { useRoute, useNavigation } from "@react-navigation/native";
+import { Api_vnpay } from "@/apis/Api_vnpay";
 
 type CartRouteProp = RouteProp<RootStackParamList, "Cart">;
 
 const Cart: React.FC = () => {
-  // Lấy thông tin từ route.params
   const route = useRoute<CartRouteProp>();
   const navigation = useNavigation();
-  // Nhận thông tin từ route.params và khởi tạo giỏ hàng
-  const cartItem = route.params?.cartItem ? { ...route.params.cartItem, price: Number(route.params.cartItem.price) } : null;
-  
-  const [cartItems, setCartItems] = useState(cartItem ? [{ ...cartItem, price: Number(cartItem.price) }] : []);
-  console.log('Cart Items:', cartItems);
-  console.log('Route params:', route.params);
-  // Hàm xóa sản phẩm khỏi giỏ hàng theo id
+
+  const cartItem = route.params?.cartItem
+    ? { ...route.params.cartItem, price: Number(route.params.cartItem.price) }
+    : null;
+
+  const [cartItems, setCartItems] = useState(
+    cartItem ? [{ ...cartItem, price: Number(cartItem.price) }] : []
+  );
+
+  const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+
+  // Remove item from cart by id
   const removeItemFromCart = (id: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  // Tính toán tổng số sản phẩm và tổng tiền
+  // Calculate total items and total price
   const totalItems = cartItems.length;
-  const totalPrice = cartItems.reduce((sum, item) => {
-    return sum + (item.price || 0);
-  }, 0);
-  // const [cartItems, setCartItems] = useState([
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + (item.price || 0),
+    0
+  );
 
+  const handleVNPay = async () => {
+    try {
+      const amount = totalPrice * 230000;
+      const res = await Api_vnpay.createPaymentUrl({ amount });
+      const paymentUrl = res.data;
+      Linking.openURL(paymentUrl);
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
 
-  //   {
-  //     id: 1,
-  //     title: "UX Foundation",
-  //     price: 59,
-  //     imageUrl: "https://picsum.photos/200/300?grayscale",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "UI Design",
-  //     price: 75,
-  //     imageUrl: "https://picsum.photos/200/300?grayscale",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Graphic Design Basics",
-  //     price: 40,
-  //     imageUrl: "https://picsum.photos/200/300?grayscale",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Advanced Photoshop",
-  //     price: 99,
-  //     imageUrl: "https://picsum.photos/200/300?grayscale",
-  //   },
-  // ]);
+  // Use Linking to listen for the return URL from VNPay
+  useEffect(() => {
+    const handleUrl = (event: any) => {
+      const { url } = event;
+      const urlParams = new URLSearchParams(url.split("?")[1]);
+
+      const vnpayAmount = urlParams.get("vnp_Amount");
+      const vnpayResponseCode = urlParams.get("vnp_ResponseCode");
+      const vnpayOrderInfo = urlParams.get("vnp_OrderInfo");
+      const vnpayTxnRef = urlParams.get("vnp_TxnRef");
+
+      // Process the parameters
+      console.log("VNPay return:", {
+        vnpayAmount,
+        vnpayResponseCode,
+        vnpayOrderInfo,
+        vnpayTxnRef,
+      });
+
+      if (vnpayResponseCode === "00") {
+        setPaymentStatus("Payment successful");
+      } else {
+        setPaymentStatus("Payment failed");
+      }
+    };
+
+    Linking.addEventListener("url", handleUrl);
+    // return () => {
+    //   Linking.removeEventListener("url", handleUrl);
+    // };
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -74,7 +93,7 @@ const Cart: React.FC = () => {
         <ArrowBack onPress={() => navigation.goBack()} />
         <Text style={styles.textHeader}>Your Cart</Text>
       </View>
-      <View style={styles.courseCart}>
+      <View style={styles.cartSummary}>
         <Text style={styles.countSum}>{totalItems} item(s) in your cart</Text>
       </View>
 
@@ -85,22 +104,22 @@ const Cart: React.FC = () => {
             <Image source={{ uri: item.imageUrl }} style={styles.image} />
             <View style={styles.textContainer}>
               <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.price}>${item.price ? item.price : 0}</Text>
+              <Text style={styles.price}>${item.price || 0}</Text>
             </View>
-            <TouchableOpacity  onPress={() => removeItemFromCart(item.id)}>
+            <TouchableOpacity onPress={() => removeItemFromCart(item.id)}>
               <Ionicons name="trash-outline" size={32} color="#666" />
             </TouchableOpacity>
           </View>
         )}
-        keyExtractor={(item, index) => (item?.id ? item.id.toString() : index.toString())}
+        keyExtractor={(item, index) =>
+          item?.id ? item.id.toString() : index.toString()
+        }
       />
       <View style={styles.discountContainer}>
         <TextInput style={styles.discountInput} placeholder="Enter code" />
         <TouchableOpacity
           style={styles.applyButton}
-          onPress={() => {
-            console.log("Apply");
-          }}
+          onPress={() => console.log("Apply")}
         >
           <Text style={styles.applyText}>Apply</Text>
         </TouchableOpacity>
@@ -125,12 +144,7 @@ const Cart: React.FC = () => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.placeOrderButton}
-          onPress={() => {
-            console.log("Place Order");
-          }}
-        >
+        <TouchableOpacity style={styles.placeOrderButton} onPress={handleVNPay}>
           <Text style={styles.placeOrderText}>Place Order</Text>
         </TouchableOpacity>
       </View>
@@ -154,7 +168,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginLeft: 100,
   },
-  courseCart: {
+  cartSummary: {
     marginTop: 20,
   },
   countSum: {
@@ -231,7 +245,7 @@ const styles = StyleSheet.create({
   cartItem: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 30, //đổi kích thước của ở đây
+    paddingVertical: 30,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
   },
@@ -253,26 +267,26 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   buttonContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 20,
-},
-placeOrderButton: {
-    backgroundColor: '#00bdd6', 
+  },
+  placeOrderButton: {
+    backgroundColor: "#00bdd6",
     paddingVertical: 15,
-    paddingHorizontal: 130, // Khoảng cách hai bên
-    borderRadius: 25, // Bo góc
-    shadowColor: '#000', // Đổ bóng
+    paddingHorizontal: 130,
+    borderRadius: 25,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 5,
-},
-placeOrderText: {
-    color: '#fff', // Màu chữ trắng
+  },
+  placeOrderText: {
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-},
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });
 
 export default Cart;
