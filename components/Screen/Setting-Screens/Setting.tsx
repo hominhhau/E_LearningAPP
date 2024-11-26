@@ -8,16 +8,18 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import ArrowBack from "@/components/Button/Arrow-back";
+import { useNavigation } from '@react-navigation/native';
 import  SettingGeneralComponent01 from "./SettingGeneralComponent01";
 import  SettingGeneralComponent02 from "./SettingGenneralComponent02";
 
 const Setting: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <ArrowBack
           onPress={() => {
-            console.log("Back");
+            navigation.goBack();
           }}
         />
         <Text style={styles.textHeader}>Settings</Text>
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: "#fff",
   },
   headerContainer: {
     flexDirection: "row",

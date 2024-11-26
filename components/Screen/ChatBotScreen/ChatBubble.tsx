@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "./ChatBubble.style";
 import { API_Chatgpt } from "../../../apis/Api_Chatgpt";
 
-const ChatBubble = () => {
+const ChatBubble: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [message, setMessage] = useState("");
   const [botResponse, setBotResponse] = useState("");

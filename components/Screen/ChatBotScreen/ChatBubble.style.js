@@ -4,7 +4,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    backgroundColor: "gray"
+    //backgroundColor: "gray"
   },
   buttonChatBubble: {
     width: 70,
@@ -14,6 +14,8 @@ export default StyleSheet.create({
     position: "absolute",
     bottom: 20,
     right: 20,
+    borderWidth: 2,
+    borderColor: "#00bdd6",
   },
   image: {
     width: 70,
@@ -28,7 +30,7 @@ export default StyleSheet.create({
   },
   modalContent: {
     width: "90%",
-    height: "60%",
+    height: "75%",
     backgroundColor: "white",
     borderRadius: 20,
     padding: 20,

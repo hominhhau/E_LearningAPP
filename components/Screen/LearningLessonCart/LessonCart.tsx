@@ -15,6 +15,7 @@ import TabBarCard from "../TabBar/TabBarCart";
 import LessonFinalCart from "./EachTab/LessonFinalCart";
 import ProjectFinalCart from "./EachTab/ProjectFinalCart";
 import QAFinalCart from "./EachTab/Q&AFinalCart";
+import ChatBubble from "@/components/Screen/ChatBotScreen/ChatBubble";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -46,7 +47,7 @@ const LessonCart: React.FC = () => {
       </View>
 
       <View style={styles.thumbnailContainer}>
-        {selectedVideo && (
+        {/* {selectedVideo && (
           <WebView
             key={selectedVideo}
             source={{ uri: selectedVideo }}
@@ -56,11 +57,29 @@ const LessonCart: React.FC = () => {
             startInLoadingState={true}
             allowsFullscreenVideo={true}
           />
-        )}
+        )} */}
+        {!selectedVideo ? ( // Hiển thị ảnh nếu chưa chọn video
+    <Image
+      source={{ uri: "https://picsum.photos/seed/picsum/200/300" }} // Thay bằng link ảnh mặc định
+      style={{ width: "100%", height: 250 }}
+      resizeMode="cover"
+    />
+  ) : (
+    <WebView
+      key={selectedVideo}
+      source={{ uri: selectedVideo }}
+      style={{ height: 200 }}
+      javaScriptEnabled={true}
+      domStorageEnabled={true}
+      startInLoadingState={true}
+      allowsFullscreenVideo={true}
+    />
+  )}
+
       </View>
 
       <View style={styles.courseInfoContainer}>
-        <Text>{courseTitle}</Text>
+        <Text style={styles.titleCourse}>{courseTitle}</Text>
       </View>
 
       <View style={styles.tabBarContainer}>
@@ -87,6 +106,7 @@ const LessonCart: React.FC = () => {
           </View>
         )}
       </ScrollView>
+      <ChatBubble />
     </View>
   );
 };
@@ -110,6 +130,11 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   content: {},
+  titleCourse: {
+    fontSize: 20,
+    fontWeight: "bold",
+
+  },
 });
 
 export default LessonCart;

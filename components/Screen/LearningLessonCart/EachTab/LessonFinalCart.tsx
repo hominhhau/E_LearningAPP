@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import LessonItem from "./Lesson/LessonItem";
 import { Video } from "expo-av";
 import { WebView } from "react-native-webview";
@@ -17,6 +17,8 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
   const [dataLesson, setDataLesson] = useState<any[]>([]); // Lưu trữ danh sách bài học
   const navigation = useNavigation();
   const route = useRoute();
+
+
   const { courseTitle, courseID } = route.params as {
     courseTitle: string;
     courseID: string;
@@ -49,11 +51,14 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
 
     fetchLessons();
   }, [courseID]);
+
   console.log("dfsefsdfds", dataLesson);
+
   const handleVideoSelect = (videoLink: string) => {
     setSelectedVideo(videoLink);
     onSelectVideo(videoLink);
   };
+  
   return (
     <View style={styles.container}>
       {dataLesson.map((item) => (

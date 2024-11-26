@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slices/userSlices"; // Đường dẫn tới userSlice
@@ -7,11 +7,19 @@ import Button from "@/components/Button/Button";
 import ArrowBack from "@/components/Button/Arrow-back";
 import GoogleLogoIcon from "@/assets/Icon/GoogleLogoIcon";
 import { Api_Auth } from "@/apis/Api_Auth"; // Đường dẫn tới API của bạn
+import { RouteProp, useRoute } from "@react-navigation/native";
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [phone, setPhone] = React.useState("");
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
+  // Lấy tham số từ navigation để kiểm tra xem có cần reset mật khẩu không
+  const route = useRoute<RouteProp<any, 'Login'>>();
+  useEffect(() => {
+    if (route.params?.resetPassword) {
+      setPassword(""); // Reset mật khẩu nếu có tham số resetPassword
+    }
+  }, [route.params?.resetPassword]);
 
   const handleLoginByPhone = async () => {
     try {

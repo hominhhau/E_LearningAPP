@@ -8,13 +8,18 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StatsGroup from "./Statistical";
-// import * as ImagePicker from "expo-image-picker";
-//import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import * as ImagePicker from "expo-image-picker";
+// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useNavigation } from "@react-navigation/native"; 
 import { RootStackParamList } from '../../../navigation/types';
 
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../../constants/firebaseConfig"; // Import từ file config
+
+import { useSelector } from "react-redux";
+
 const User: React.FC = () => {
+  const navigation = useNavigation<RootStackParamList>();
   const [avatar, setAvatar] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null); //truyen do
   const [uploading, setUploading] = useState(false);
@@ -69,12 +74,18 @@ const User: React.FC = () => {
     }
   };
 
+   // Lấy `name` từ Redux Store
+   const user = useSelector((state: any) => state.user.user);
+
+   // Ensure the user object is loaded and contains a name
+   const username = user?.name || "Guest"; // Fallback to "Guest" if name is undefined
+
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.textHeader}>User's profile</Text>
-        <TouchableOpacity onPress={() => console.log("more")} style={styles.icon}>
+        <TouchableOpacity onPress={() => navigation.navigate("Setting")} style={styles.icon}>
           <Ionicons name="ellipsis-horizontal-outline" size={32} color="#000" />
         </TouchableOpacity>
       </View>
@@ -96,7 +107,7 @@ const User: React.FC = () => {
             style={styles.avatar}
           />
         </TouchableOpacity>
-        <Text style={styles.textName}>Nguyễn Văn A</Text>
+        <Text style={styles.textName}>{username}</Text>
 
         <View style={styles.statisticalContainer}>
           <StatsGroup stats={stats} />
@@ -118,6 +129,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
+    backgroundColor: "#fff",
   },
   headerContainer: {
     flexDirection: "row",
