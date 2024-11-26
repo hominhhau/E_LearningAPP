@@ -7,11 +7,10 @@ type CourseProps = {
     nameCourse: string;
     nameTeacher: string;
     price: string;
-    onIconStarPress: () => void;
     textIcon: string; // For star rating and number of ratings
-    onIconLesson: () => void;
     textIconLesson: string; // For number of lessons
     onIconBookmarkPress: () => void;
+    onPress?: () => void;
 };
 
 const Course: React.FC<CourseProps> = ({
@@ -19,28 +18,22 @@ const Course: React.FC<CourseProps> = ({
     nameCourse,
     nameTeacher,
     price,
-    onIconStarPress,
     textIcon,
-    onIconLesson,
     textIconLesson,
     onIconBookmarkPress,
+    onPress
 }) => {
-    const [isStarred, setIsStarred] = useState(false); // State for star
-    const [isBookmarked, setIsBookmarked] = useState(false); // State for bookmark
-
-    // Handle star press
-    const handleStarPress = () => {
-        setIsStarred(!isStarred); // Toggle star state
-        onIconStarPress(); // Keep the existing press event
-    };
+    const [isStarred, setIsStarred] = useState(false); 
+    const [isBookmarked, setIsBookmarked] = useState(false)
 
     // Handle bookmark press
     const handleBookmarkPress = () => {
-        setIsBookmarked(!isBookmarked); // Toggle bookmark state
-        onIconBookmarkPress(); // Keep the existing press event
+        setIsBookmarked(!isBookmarked); 
+        onIconBookmarkPress(); 
     };
 
     return (
+        <TouchableOpacity onPress={onPress}>
         <View style={styles.container}>
             {/* Course Image */}
             <Image source={imageCourse} style={styles.image} />
@@ -54,20 +47,20 @@ const Course: React.FC<CourseProps> = ({
                 {/* Rating and Lesson Icons */}
                 <View style={styles.iconsContainer}>
                     {/* Star Rating */}
-                    <TouchableOpacity onPress={handleStarPress} style={styles.icon}>
+                    <View style={styles.icon}>
                         <Ionicons
                             name={isStarred ? "star" : "star-outline"}
                             size={24}
                             color={isStarred ? "#FFD700" : "#FFFF33"}
                         />
                         <Text style={styles.iconText}>{textIcon}</Text>
-                    </TouchableOpacity>
+                    </View>
 
                     {/* Lesson Count */}
-                    <TouchableOpacity onPress={onIconLesson} style={styles.icon}>
+                    <View  style={styles.icon}>
                         <Ionicons name="book-outline" size={24} color="#999" />
                         <Text style={styles.iconText}>{textIconLesson}</Text>
-                    </TouchableOpacity>
+                    </View>
                 </View>
             </View>
 
@@ -80,6 +73,7 @@ const Course: React.FC<CourseProps> = ({
                 />
             </TouchableOpacity>
         </View>
+        </TouchableOpacity>
     );
 };
 

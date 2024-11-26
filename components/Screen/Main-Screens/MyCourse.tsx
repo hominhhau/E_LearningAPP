@@ -8,8 +8,8 @@ import GeneralTabBar02 from "../TabBar/GeneralTabBar02";
 import CoursesProcessComponent from "./MyCourse/All/CourseProcessComponent";
 
 const MyCourse: React.FC = () => {
-  // Quản lý trạng thái tab hiện tại
-  const [activeTab, setActiveTab] = useState("ALL");
+    // Quản lý trạng thái tab hiện tại
+    const [activeTab, setActiveTab] = useState('ALL');
 
 
     return (

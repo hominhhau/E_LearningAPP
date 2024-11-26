@@ -19,7 +19,7 @@ interface LessonFinalProps {
       index: 1,
       title: "How to learn SQL for free | Roadmap to learning SQL",
       duration: "27:19 mins",
-      isCompleted: true,
+      isCompleted: false,
       videoLink: "https://drive.google.com/file/d/1Lxhe8akgIFf0KdPUHpH0VOba1Ccu5ieG/preview",
     },
     {
@@ -109,7 +109,7 @@ interface LessonFinalProps {
             title={item.title}
             duration={item.duration}
             isCompleted={item.isCompleted}
-            //isPurchased={userHasPurchasedCourse} 
+            isLocked={true}
             onPress={() => handleVideoSelect(item.videoLink)}
         />
     ))}

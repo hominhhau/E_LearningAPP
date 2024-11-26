@@ -8,6 +8,7 @@ interface LessonProps {
   duration: string;
   isCompleted: boolean;
   //isPurchased: boolean;
+  isLocked: boolean;
   onPress: () => void;
 }
 
@@ -17,6 +18,7 @@ const LessonItem: React.FC<LessonProps> = ({
   duration,
   isCompleted,
   //isPurchased,
+  isLocked,
   onPress,
 }) => {
   //trang thai bai hoc (hoan thanh or khoa)
@@ -27,7 +29,9 @@ const LessonItem: React.FC<LessonProps> = ({
       <TouchableOpacity
         style={styles.btnLesson}
         //onPress={isPurchased ? onPress : undefined}//phat video khi mua roi
-        onPress={onPress}
+        //onPress={onPress}
+        onPress={!isLocked ? onPress : undefined}//true la khoa
+
       >
         <Text style={styles.index}>{String(index).padStart(2, "0")}</Text>
         <View style={styles.content}>

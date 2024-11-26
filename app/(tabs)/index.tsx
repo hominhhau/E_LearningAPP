@@ -23,7 +23,7 @@ import { Provider } from "react-redux";
 
 import CoursesProcessComponent from "@/components/Screen/Main-Screens/MyCourse/All/CourseProcessComponent";
 import LessonCart from "@/components/Screen/LearningLessonCart/LessonCart";
-
+import LessonNoCart from "@/components/Screen/LearningLessonNoCart/LessonNoCart";
 //Setting
 import Setting from "@/components/Screen/Setting-Screens/Setting";
 import Language from "@/components/Screen/Setting-Screens/Language";
@@ -31,7 +31,6 @@ import Notification from "@/components/Screen/Setting-Screens/Notification";
 import Security from "@/components/Screen/Setting-Screens/Security";
 import Legal from "@/components/Screen/Setting-Screens/Legal";
 import HelpAndSupport from "@/components/Screen/Setting-Screens/HelpAndSupport";
-
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,45 +98,51 @@ export default function App() {
           />
           <Stack.Screen
             name="CoursesProcessComponent"
-            component={(props: any) => <CoursesProcessComponent {...props} activeTab="ALL" />}
+            component={(props: any) => (
+              <CoursesProcessComponent {...props} activeTab="ALL" />
+            )}
             options={{ headerShown: false }}
           />
-            <Stack.Screen
-                name="LessonCart"
-                component={LessonCart}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
-          name="Setting"
-          component={Setting}
-          options={{ headerShown: false }} // Ẩn header mặc định
-        />
-        <Stack.Screen
-          name="Language"
-          component={Language}
-          options={{ headerShown: false }} // Ẩn header mặc định
-        />
-        <Stack.Screen
-          name="Notification"
-          component={Notification}
-          options={{ headerShown: false }} // Ẩn header mặc định
-        />
-        <Stack.Screen
-          name="Security"
-          component={Security}
-          options={{ headerShown: false }} // Ẩn header mặc định
-        />
-        <Stack.Screen
-          name="Legal"
-          component={Legal}
-          options={{ headerShown: false }} // Ẩn header mặc định
-        />
-        <Stack.Screen
-          name="HelpAndSupport"
-          component={HelpAndSupport}
-          options={{ headerShown: false }} // Ẩn header mặc định
-        />
-
+          <Stack.Screen
+            name="LessonCart"
+            component={LessonCart}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="LessonNoCart"
+            component={(props: any) => <LessonNoCart {...props} />}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Setting"
+            component={Setting}
+            options={{ headerShown: false }} // Ẩn header mặc định
+          />
+          <Stack.Screen
+            name="Language"
+            component={Language}
+            options={{ headerShown: false }} // Ẩn header mặc định
+          />
+          <Stack.Screen
+            name="Notification"
+            component={Notification}
+            options={{ headerShown: false }} // Ẩn header mặc định
+          />
+          <Stack.Screen
+            name="Security"
+            component={Security}
+            options={{ headerShown: false }} // Ẩn header mặc định
+          />
+          <Stack.Screen
+            name="Legal"
+            component={Legal}
+            options={{ headerShown: false }} // Ẩn header mặc định
+          />
+          <Stack.Screen
+            name="HelpAndSupport"
+            component={HelpAndSupport}
+            options={{ headerShown: false }} // Ẩn header mặc định
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
@@ -193,4 +198,3 @@ function MainTabNavigator() {
     </Tab.Navigator>
   );
 }
-
