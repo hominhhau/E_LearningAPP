@@ -26,9 +26,11 @@ const FindComponent: React.FC<FindComponentProps> = ({ onCoursesFound }) => {
       console.log("abcabc" ,courses)
       console.log('Is Array:', Array.isArray(courses)); // Kiểm tra nếu là mảng
       console.log('Courses Length:', courses.length); // Kiểm tra độ dài mảng
-      
+
+
       if (Array.isArray(courses) && courses.length > 0) {
         console.log('Found courses:', courses); // Xử lý kết quả tìm kiếm
+
       } else {
         Alert.alert('No Results', 'No courses found for your search');
       }

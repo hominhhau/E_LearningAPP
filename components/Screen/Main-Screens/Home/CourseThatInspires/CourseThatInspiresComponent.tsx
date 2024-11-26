@@ -19,6 +19,10 @@ type CourseType = {
   textIconLesson: string;
 };
 
+interface CourseThatInspiresComponentProps {
+  courses: CourseType[]; // Nhận danh sách khóa học từ props
+}
+
 const CourseThatInspiresComponent: React.FC = () => {
   const navigation = useNavigation<NavigationProp>();
   const [coursesData, setCoursesData] = useState<CourseType[]>([]);
@@ -65,6 +69,7 @@ const CourseThatInspiresComponent: React.FC = () => {
           <Text style={styles.viewMore}>View more</Text>
         </TouchableOpacity>
       </View>
+      
       {coursesData.map((course) => (
         <Courses
           key={course.id}

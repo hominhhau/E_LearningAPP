@@ -17,9 +17,9 @@ export const Api_Course = {
     deleteCourse: async (id) => {
         return ApiManager.delete(`/deleteCourse/${id}`);
     },
-    getCourseByUser: async (data) => {
-        return ApiManager.post('/getCourseByUser', data);
-    },
+    // getCourseByUser: async (data) => {
+    //     return ApiManager.post('/getCourseByUser', data);
+    // },
     getUnenrolledCourses: async (data) => {
         return ApiManager.post('/unenrolled-courses', data);
     },
@@ -28,7 +28,16 @@ export const Api_Course = {
     },
     getCourseByCategory: async (data) => {
         return ApiManager.post('/getCourseByCategory', data);
-    }
+    },
+    getCourseByUser: async (userId) => {
+        console.log('Api_Course.getCourseByUser', userId);
+        return ApiManager.post('/getCourseByUser', { userId });
+    },
+    // getLessonsByCourse
+    getLessonsByCourse: async (courseID) => {
+        console.log('Api_Course.getLessonsByCourse', courseID);
+        return ApiManager.post('/getLessonsByCourse', { courseID });
+    },
 
 
 }
