@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   TouchableOpacity,
   View,
@@ -12,59 +12,68 @@ import FindComponent from "./Search/FindComponent";
 import Category from "./Home/Categories/Categories";
 
 const Search: React.FC = () => {
+  const [coursesFound, setCoursesFound] = useState(false); // State để kiểm tra có tìm thấy khóa học hay không
+  // Hàm callback để cập nhật khi tìm thấy khóa học
+  const handleCoursesFound = (found: boolean) => {
+    setCoursesFound(found); // Cập nhật trạng thái coursesFound
+  };
   return (
     <View style={styles.container}>
-      <FindComponent />
+      <FindComponent onCoursesFound={handleCoursesFound} />
       <View style={styles.titleContainer}>
         <Text style={styles.text}>Categories</Text>
         <TouchableOpacity onPress={() => console.log('View more Pressed')}>
                     <Text style={styles.viewMore}>View more</Text>
                 </TouchableOpacity>
       </View>
-      <View style={styles.categoriesContainer}>
-      <Category
-        icon="trending-up-outline"
-        title="Business"
-        backgroundColor="#00BCD4"
-        onPress={() => console.log("Business Pressed")}
-        iconNext={true}
-      />
-      <Category
-        icon="code-outline"
-        title="Code"
-        backgroundColor="#e05858"
-        onPress={() => console.log("Code Pressed")}
-        iconNext={true}
-      />
-      <Category
-        icon="videocam-outline"
-        title="Movie"
-        backgroundColor="#8252e3"
-        onPress={() => console.log("Video Pressed")}
-        iconNext={true}
-      />
-      <Category
-        icon="brush-outline"
-        title="Design"
-        backgroundColor="#8252e3"
-        onPress={() => console.log("Design Pressed")}
-        iconNext={true}
-      />
-      <Category
-        icon="document-text-outline"
-        title="Writing"
-        backgroundColor="#3f6ae9"
-        onPress={() => console.log("Writing Pressed")}
-        iconNext={true}
-      />
-      <Category
-        icon="earth-outline"
-        title="Language"
-        backgroundColor="#ec7d2d"
-        onPress={() => console.log("Language Pressed")}
-        iconNext={true}
-      />
-      </View>
+
+            {/* Chỉ hiển thị categories khi không tìm thấy khóa học */}
+      {!coursesFound && (
+        <View style={styles.categoriesContainer}>
+          <Category
+            icon="trending-up-outline"
+            title="Business"
+            backgroundColor="#00BCD4"
+            onPress={() => console.log("Business Pressed")}
+            iconNext={true}
+          />
+          <Category
+            icon="code-outline"
+            title="Code"
+            backgroundColor="#e05858"
+            onPress={() => console.log("Code Pressed")}
+            iconNext={true}
+          />
+          <Category
+            icon="videocam-outline"
+            title="Movie"
+            backgroundColor="#8252e3"
+            onPress={() => console.log("Video Pressed")}
+            iconNext={true}
+          />
+          <Category
+            icon="brush-outline"
+            title="Design"
+            backgroundColor="#8252e3"
+            onPress={() => console.log("Design Pressed")}
+            iconNext={true}
+          />
+          <Category
+            icon="document-text-outline"
+            title="Writing"
+            backgroundColor="#3f6ae9"
+            onPress={() => console.log("Writing Pressed")}
+            iconNext={true}
+          />
+          <Category
+            icon="earth-outline"
+            title="Language"
+            backgroundColor="#ec7d2d"
+            onPress={() => console.log("Language Pressed")}
+            iconNext={true}
+          />
+        </View>
+      )}
   
     </View>
   );
