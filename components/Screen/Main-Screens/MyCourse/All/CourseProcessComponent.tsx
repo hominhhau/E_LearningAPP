@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import CoursesProcess from "./Course";
 import { Api_Course } from "@/apis/Api_Course";
+import { Api_User} from "@/apis/Api_User";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "@/components/navigation/assets/types";
@@ -40,6 +41,8 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
     handleLoadData();
   }, [userId]);
 
+
+
   /**
    *        id: 5,
             image: require('../../../../../assets/images/ImageCourse01.png'),
@@ -52,18 +55,19 @@ const CoursesProcessComponent: React.FC<CoursesProcessComponentProps> = ({
    * chuyển đổi respons thành data cần dùng
    */
   //data [{"id": "672f8644353bd074530d6fc3", "image": "https://picsum.photos/200/300", "processPercentage": undefined, "time": 0, "title": "Khóa học 1"}]
-  const data = (dataCourses || []).map((course) => ({
-    id: course._id,
-    image: course.image.url || "https://picsum.photos/200/300",
-    title: course.name,
-    time: course.duration,
-    processPercentage: course.processPercentage || 0,
+  const data = (dataCourses || []).map((courseData) => ({
+    id: courseData.courseId._id,
+    image: courseData.courseId.image?.url || "https://picsum.photos/200/300",
+    title: courseData.courseId.name,
+    time: courseData.courseId.duration,
+    processPercentage: courseData.progress || 0,
   }));
   console.log("data", data);
-  const filteredCourses = data.filter((course) => {
+  console.log("dataCourses", dataCourses);
+  const filteredCourses = data.filter((courseData) => {
     if (activeTab === "ALL") return true;
-    if (activeTab === "ON GOING" && course.processPercentage < 100) return true;
-    if (activeTab === "COMPLETED" && course.processPercentage === 100)
+    if (activeTab === "ON GOING" && courseData.processPercentage < 100) return true;
+    if (activeTab === "COMPLETED" && courseData.processPercentage === 100)
       return true;
     return false;
   });

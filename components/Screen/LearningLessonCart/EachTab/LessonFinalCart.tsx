@@ -1,12 +1,14 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 import LessonItem from "./Lesson/LessonItem";
 import { Video } from "expo-av";
 import { WebView } from "react-native-webview";
 import YouTube from "react-native-youtube-iframe";
 import { Api_Lesson } from "@/apis/Api_Lessons";
+import { Api_User} from "@/apis/Api_User";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 //https://drive.google.com/file/d/1Lxhe8akgIFf0KdPUHpH0VOba1Ccu5ieG/view?usp=drive_link
 interface LessonFinalProps {
   onSelectVideo: (videoLink: string) => void;
@@ -17,6 +19,11 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
   const [dataLesson, setDataLesson] = useState<any[]>([]); // Lưu trữ danh sách bài học
   const navigation = useNavigation();
   const route = useRoute();
+
+ 
+  // Lấy `user` từ Redux store
+  const user = useSelector((state: any) => state.user.user);
+  const userId = user?.userID; // Truy cập userID từ user (nếu tồn tại)
 
 
   const { courseTitle, courseID } = route.params as {
@@ -54,9 +61,37 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
 
   console.log("dfsefsdfds", dataLesson);
 
-  const handleVideoSelect = (videoLink: string) => {
+  const handleCompleteLesson = async (lessonId: string) => {
+    if (!userId) {
+      console.error("User ID không tồn tại!");
+      return;
+    }
+    try {
+      // Gọi API để cập nhật trạng thái bài học hoàn thành
+      const response = await Api_User.updateLessonCompletion(
+        userId, 
+        courseID,
+        lessonId,
+        true // Đánh dấu bài học đã hoàn thành
+      );
+
+      // Cập nhật trạng thái `isCompleted` của bài học trong `dataLesson`
+      const updatedLessons = dataLesson.map((lesson) =>
+        lesson.id === lessonId
+          ? { ...lesson, isCompleted: true } // Cập nhật thành `true`
+          : lesson
+      );
+
+      setDataLesson(updatedLessons); // Cập nhật danh sách bài học
+    } catch (error) {
+      console.error("Error updating lesson completion:", error);
+    }
+  };
+
+  const handleVideoSelect = (videoLink: string, lessonId: string) => {
     setSelectedVideo(videoLink);
     onSelectVideo(videoLink);
+    handleCompleteLesson(lessonId);
   };
   
   return (
@@ -69,7 +104,7 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
           duration={item.duration}
           isCompleted={item.isCompleted}
           //isPurchased={userHasPurchasedCourse}
-          onPress={() => handleVideoSelect(item.videoLink)}
+          onPress={() => handleVideoSelect(item.videoLink, item.id)}
         />
       ))}
     </View>
