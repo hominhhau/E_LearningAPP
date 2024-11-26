@@ -11,6 +11,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import CoursePopular from "./Courses";
 import { Api_Course } from "@/apis/Api_Course";
 import { RootStackParamList } from "@/components/navigation/types";
+import { useSelector } from "react-redux";
 
 type NavigationProp = StackNavigationProp<RootStackParamList, "LessonNoCart">;
 
@@ -26,13 +27,15 @@ type CourseType = {
 };
 
 const CoursePopularComponent: React.FC = () => {
+  const user = useSelector((state: any) => state.user.user);
   const navigation = useNavigation<NavigationProp>();
   const [unenrolledCourses, setUnenrolledCourses] = useState<CourseType[]>([]);
-
+  const userId = user?.userID;
+  console.log("User IDfsdfsdfsdfdsf Haua:", userId);
   useEffect(() => {
     const fetchUnenrolledCourses = async () => {
       try {
-        const userId = "1732454183558"; // Replace with actual user ID
+        // const userId = "1732454183558"; // Replace with actual user ID
         const response = await Api_Course.getUnenrolledCourses({ userId });
 
         if (response?.success && response.unenrolledCourses) {

@@ -5,7 +5,7 @@ import { Video } from "expo-av";
 import { WebView } from "react-native-webview";
 import YouTube from "react-native-youtube-iframe";
 import { Api_Lesson } from "@/apis/Api_Lessons";
-import { Api_User} from "@/apis/Api_User";
+import { Api_User } from "@/apis/Api_User";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
@@ -20,11 +20,9 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
   const navigation = useNavigation();
   const route = useRoute();
 
- 
   // Lấy `user` từ Redux store
   const user = useSelector((state: any) => state.user.user);
   const userId = user?.userID; // Truy cập userID từ user (nếu tồn tại)
-
 
   const { courseTitle, courseID } = route.params as {
     courseTitle: string;
@@ -69,7 +67,7 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
     try {
       // Gọi API để cập nhật trạng thái bài học hoàn thành
       const response = await Api_User.updateLessonCompletion(
-        userId, 
+        userId,
         courseID,
         lessonId,
         true // Đánh dấu bài học đã hoàn thành
@@ -93,7 +91,7 @@ const LessonFinalCart: React.FC<LessonFinalProps> = ({ onSelectVideo }) => {
     onSelectVideo(videoLink);
     handleCompleteLesson(lessonId);
   };
-  
+
   return (
     <View style={styles.container}>
       {dataLesson.map((item) => (

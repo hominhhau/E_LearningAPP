@@ -6,6 +6,7 @@ import Courses from "@/components/Screen/LearningLessonNoCart/EachTab/Overview/S
 import { Api_Course } from "@/apis/Api_Course";
 import { RootStackParamList } from "@/components/navigation/types";
 import { Float } from "react-native/Libraries/Types/CodegenTypes";
+import { useSelector } from "react-redux";
 
 type NavigationProp = StackNavigationProp<RootStackParamList, "LessonNoCart">;
 
@@ -24,13 +25,14 @@ interface CourseThatInspiresComponentProps {
 }
 
 const CourseThatInspiresComponent: React.FC = () => {
+  const user = useSelector((state: any) => state.user.user);
   const navigation = useNavigation<NavigationProp>();
   const [coursesData, setCoursesData] = useState<CourseType[]>([]);
-
+  const userId = user?.userID;
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const userId = "1732454183558"; // Replace with actual user ID
+        // const userId = "1732454183558"; // Replace with actual user ID
         const response = await Api_Course.getUnenrolledCourses({ userId });
 
         if (response?.success && response.unenrolledCourses) {
@@ -69,7 +71,7 @@ const CourseThatInspiresComponent: React.FC = () => {
           <Text style={styles.viewMore}>View more</Text>
         </TouchableOpacity>
       </View>
-      
+
       {coursesData.map((course) => (
         <Courses
           key={course.id}

@@ -61,9 +61,5 @@
 //       <Stack.Screen name="Cart" component={Cart} />
 //     </Stack.Navigator>
 
-
-
 //     );
 //  };
-
-

@@ -31,6 +31,8 @@ import Notification from "@/components/Screen/Setting-Screens/Notification";
 import Security from "@/components/Screen/Setting-Screens/Security";
 import Legal from "@/components/Screen/Setting-Screens/Legal";
 import HelpAndSupport from "@/components/Screen/Setting-Screens/HelpAndSupport";
+import PaymentWebView from "@/components/Screen/Cart/PaymentWebView";
+import Cart from "@/components/Screen/Cart/Cart";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -142,6 +144,16 @@ export default function App() {
             name="HelpAndSupport"
             component={HelpAndSupport}
             options={{ headerShown: false }} // Ẩn header mặc định
+          />
+          <Stack.Screen
+            name="PaymentWebView"
+            component={PaymentWebView}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={Cart}
+            options={{ headerShown: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>
