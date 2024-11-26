@@ -50,6 +50,7 @@ import LessonNoCart from '@/components/Screen/LearningLessonNoCart/LessonNoCart'
 import Home from '../components/Screen/Main-Screens/Home';
 import TeacherProfile from '@/components/Screen/LearningLessonNoCart/EachTab/Overview/Teacher/TeacherProfile';
 //const Stack = createStackNavigator();
+import PaymentWebView from '../components/Screen/Cart/PaymentWebView';
 const Stack = createStackNavigator<RootStackParamList>();
 
  export default function App() {
@@ -59,6 +60,7 @@ const Stack = createStackNavigator<RootStackParamList>();
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="LessonNoCart" component={LessonNoCart} />
       <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="PaymentWebView" component={PaymentWebView} />
     </Stack.Navigator>
 
 

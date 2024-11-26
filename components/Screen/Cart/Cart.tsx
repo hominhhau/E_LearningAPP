@@ -15,12 +15,14 @@ import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/components/navigation/types";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Api_vnpay } from "@/apis/Api_vnpay";
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type CartRouteProp = RouteProp<RootStackParamList, "Cart">;
+type CartNavigationProp = StackNavigationProp<RootStackParamList, 'Cart'>;
 
 const Cart: React.FC = () => {
   const route = useRoute<CartRouteProp>();
-  const navigation = useNavigation();
+  const navigation = useNavigation<CartNavigationProp>();
 
   const cartItem = route.params?.cartItem
     ? { ...route.params.cartItem, price: Number(route.params.cartItem.price) }
@@ -31,13 +33,12 @@ const Cart: React.FC = () => {
   );
 
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+  const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
 
-  // Remove item from cart by id
   const removeItemFromCart = (id: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  // Calculate total items and total price
   const totalItems = cartItems.length;
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + (item.price || 0),
@@ -48,44 +49,14 @@ const Cart: React.FC = () => {
     try {
       const amount = totalPrice * 230000;
       const res = await Api_vnpay.createPaymentUrl({ amount });
-      const paymentUrl = res.data;
-      Linking.openURL(paymentUrl);
+      setPaymentUrl(res.data);
+
+      // Navigate to the PaymentWebView screen with the payment URL
+      navigation.navigate("PaymentWebView", { paymentUrl: res.data });
     } catch (error) {
       console.log("Error: ", error);
     }
   };
-
-  // Use Linking to listen for the return URL from VNPay
-  useEffect(() => {
-    const handleUrl = (event: any) => {
-      const { url } = event;
-      const urlParams = new URLSearchParams(url.split("?")[1]);
-
-      const vnpayAmount = urlParams.get("vnp_Amount");
-      const vnpayResponseCode = urlParams.get("vnp_ResponseCode");
-      const vnpayOrderInfo = urlParams.get("vnp_OrderInfo");
-      const vnpayTxnRef = urlParams.get("vnp_TxnRef");
-
-      // Process the parameters
-      console.log("VNPay return:", {
-        vnpayAmount,
-        vnpayResponseCode,
-        vnpayOrderInfo,
-        vnpayTxnRef,
-      });
-
-      if (vnpayResponseCode === "00") {
-        setPaymentStatus("Payment successful");
-      } else {
-        setPaymentStatus("Payment failed");
-      }
-    };
-
-    Linking.addEventListener("url", handleUrl);
-    // return () => {
-    //   Linking.removeEventListener("url", handleUrl);
-    // };
-  }, []);
 
   return (
     <View style={styles.container}>
