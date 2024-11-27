@@ -15,12 +15,17 @@ import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/components/navigation/types";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Api_vnpay } from "@/apis/Api_vnpay";
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useSelector } from "react-redux";
+import { Api_Invoice } from "@/apis/Api_Invoice";
+import { Api_User } from "@/apis/Api_User";
+import moment from "moment";
 
 type CartRouteProp = RouteProp<RootStackParamList, "Cart">;
-type CartNavigationProp = StackNavigationProp<RootStackParamList, 'Cart'>;
+type CartNavigationProp = StackNavigationProp<RootStackParamList, "Cart">;
 
 const Cart: React.FC = () => {
+  const user = useSelector((state: any) => state.user.user);
   const route = useRoute<CartRouteProp>();
   const navigation = useNavigation<CartNavigationProp>();
 
@@ -34,7 +39,6 @@ const Cart: React.FC = () => {
 
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
   const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
-
   const removeItemFromCart = (id: number) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
@@ -45,14 +49,42 @@ const Cart: React.FC = () => {
     0
   );
 
-  const handleVNPay = async () => {
+  const handleOder = async () => {
     try {
       const amount = totalPrice * 230000;
-      const res = await Api_vnpay.createPaymentUrl({ amount });
-      setPaymentUrl(res.data);
+      //orderId = moment(date).format('DDHHmmss')
+      const invoiceID = moment().format("DDHHmmss");
+      const userID = user?._id;
+      const courseID = cartItems[0].id.toString();
+      const status = "pending";
+      const price = amount;
+      const userId = user?.userID;
+      const courseId = cartItems[0].id.toString();
+      console.log("User ID:", userID);
+      console.log("Course ID:", courseID);
+      console.log("Invoice ID:", invoiceID);
 
-      // Navigate to the PaymentWebView screen with the payment URL
-      navigation.navigate("PaymentWebView", { paymentUrl: res.data });
+      // create invoice
+      const res = await Api_Invoice.createInvoice({
+        invoiceID,
+        userID,
+        courseID,
+        status,
+        price,
+      });
+
+      console.log("Invoice created:", res);
+
+      const res1 = await Api_vnpay.createPaymentUrl({ invoiceID, amount });
+      // setPaymentUrl(res1.data);
+      console.log("Payment URL:", res1.data);
+
+      // Navigate to the PaymentWebView screen with the payment URL, userID, and courseID
+      navigation.navigate("PaymentWebView", {
+        paymentUrl: res1.data,
+        userID,
+        courseID,
+      });
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -115,7 +147,7 @@ const Cart: React.FC = () => {
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.placeOrderButton} onPress={handleVNPay}>
+        <TouchableOpacity style={styles.placeOrderButton} onPress={handleOder}>
           <Text style={styles.placeOrderText}>Place Order</Text>
         </TouchableOpacity>
       </View>

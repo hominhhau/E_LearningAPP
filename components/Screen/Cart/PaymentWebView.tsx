@@ -4,18 +4,19 @@ import { WebView, WebViewNavigation } from "react-native-webview";
 import { RouteProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "@/components/navigation/types";
 import { useRoute } from "@react-navigation/native";
+import { Api_User } from "@/apis/Api_User";
 
 type PaymentWebViewRouteProp = RouteProp<RootStackParamList, "PaymentWebView">;
 
 const PaymentWebView: React.FC = () => {
   const route = useRoute<PaymentWebViewRouteProp>();
   const navigation = useNavigation();
-  const { paymentUrl } = route.params;
+  const { paymentUrl, userID, courseID } = route.params;
   const [loading, setLoading] = useState(true);
 
-  const returnUrl = "https://your-return-url.com"; // Your configured return URL
+  const returnUrl = "http://localhost:6002/order/vnpay_return"; // Your configured return URL
 
-  const handleNavigationStateChange = (navState: WebViewNavigation) => {
+  const handleNavigationStateChange = async (navState: WebViewNavigation) => {
     const { url } = navState;
 
     if (url.startsWith(returnUrl)) {
@@ -25,9 +26,8 @@ const PaymentWebView: React.FC = () => {
       if (responseCode === "00") {
         // Payment successful
         console.log("Payment Successful");
-        // navigation.navigate("PaymentSuccessScreen", {
-        //   message: "Payment Successful",
-        // });
+        const res = await Api_User.enrollCourse(userID, courseID);
+        console.log("Enroll Course:", res);
       } else {
         // Payment failed
         console.log("Payment Failed");

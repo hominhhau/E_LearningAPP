@@ -74,42 +74,42 @@ const styles = StyleSheet.create({
   iconNotice: {
     marginLeft: 15,
   },
-  safeArea: {
-    flex: 0,
-    backgroundColor: "#00BCD4",
-  },
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    backgroundColor: "#00BCD4",
-    height: 80,
-  },
-  textContainer: {
-    flexDirection: "column",
-  },
-  titleUser: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "white",
-  },
-  title: {
-    fontSize: 14,
-    color: "white",
-  },
-  iconContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  iconCart: {
-    marginRight: 15,
-  },
-  iconNotice: {
-    marginLeft: 15,
-  },
+  //   safeArea: {
+  //     flex: 0,
+  //     backgroundColor: "#00BCD4",
+  //   },
+  //   container: {
+  //     flexDirection: "row",
+  //     justifyContent: "space-between",
+  //     alignItems: "center",
+  //     paddingHorizontal: 20,
+  //     paddingVertical: 15,
+  //     backgroundColor: "#00BCD4",
+  //     height: 80,
+  //   },
+  //   textContainer: {
+  //     flexDirection: "column",
+  //   },
+  //   titleUser: {
+  //     fontSize: 18,
+  //     fontWeight: "bold",
+  //     color: "white",
+  //   },
+  //   title: {
+  //     fontSize: 14,
+  //     color: "white",
+  //   },
+  //   iconContainer: {
+  //     flexDirection: "row",
+  //     justifyContent: "space-between",
+  //     alignItems: "center",
+  //   },
+  //   iconCart: {
+  //     marginRight: 15,
+  //   },
+  //   iconNotice: {
+  //     marginLeft: 15,
+  //   },
 });
 
 export default HeaderComponent;

@@ -16,7 +16,7 @@ export type RootStackParamList = {
             imageUrl: string;
         };
     };
-    PaymentWebView: { paymentUrl: string };
+    PaymentWebView: { paymentUrl: string; userID: string; courseID: string };
     CourseThatInspiresComponent: undefined;
     TeacherProfile: undefined;
     HeaderComponent: undefined;

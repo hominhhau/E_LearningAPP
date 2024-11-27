@@ -15,5 +15,16 @@ export const Api_User = {
             console.error('Error updating lesson completion:', error);
             throw error;
         }
+    },
+    enrollCourse: async (userId, courseId) => {
+        try {
+            const response = await ApiManager.post('/enrollCourse', { userId, courseId });
+            console.log('Enrolled in course:', response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Error enrolling in course:', error);
+            throw error;
+        }
     }
+
 };
