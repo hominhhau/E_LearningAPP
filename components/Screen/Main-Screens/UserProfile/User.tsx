@@ -93,7 +93,10 @@ const User: React.FC = () => {
             style={styles.imgBia}
           />
         </View>
-        <TouchableOpacity onPress={pickImage} style={styles.avatarContainer}>
+        <TouchableOpacity
+          onPress={() => console.log("sfsdfd")}
+          style={styles.avatarContainer}
+        >
           <Image
             source={
               avatar
