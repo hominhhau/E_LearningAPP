@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import {
-  TouchableOpacity,
-  View,
-  Text,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StatsGroup from "./Statistical";
 // import * as ImagePicker from "expo-image-picker";
 // import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { useNavigation } from "@react-navigation/native"; 
-import { RootStackParamList } from '../../../navigation/types';
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../../navigation/types";
 
 // import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // import { storage } from "../../../../constants/firebaseConfig"; // Import từ file config
@@ -37,12 +31,12 @@ const User: React.FC = () => {
   //     return;
   //   }
 
-    // let result = await ImagePicker.launchImageLibraryAsync({
-    //   mediaTypes: ImagePicker.MediaTypeOptions.Images,
-    //   allowsEditing: true,
-    //   aspect: [1, 1],
-    //   quality: 1,
-    // });
+  // let result = await ImagePicker.launchImageLibraryAsync({
+  //   mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //   allowsEditing: true,
+  //   aspect: [1, 1],
+  //   quality: 1,
+  // });
 
   //   if (!result.canceled) {
   //     const imageUri = result.assets[0].uri;
@@ -53,16 +47,16 @@ const User: React.FC = () => {
 
   // const uploadImageToFirebase = async (uri: string) => {
   //   setUploading(true);
-  
+
   //   try {
   //     const response = await fetch(uri);
   //     const blob = await response.blob();
   //     const filename = uri.substring(uri.lastIndexOf("/") + 1);
-  
+
   //     const storageRef = ref(storage, `avatars/${filename}`);
   //     const snapshot = await uploadBytes(storageRef, blob);
   //     const downloadURL = await getDownloadURL(snapshot.ref);
-  
+
   //     setAvatar(downloadURL);
   //     alert("Upload thành công!");
   //     console.log("Image URL:", downloadURL);
@@ -74,18 +68,20 @@ const User: React.FC = () => {
   //   }
   // };
 
-   // Lấy `name` từ Redux Store
-   const user = useSelector((state: any) => state.user.user);
+  // Lấy `name` từ Redux Store
+  const user = useSelector((state: any) => state.user.user);
 
-   // Ensure the user object is loaded and contains a name
-   const username = user?.name || "Guest"; // Fallback to "Guest" if name is undefined
-
+  // Ensure the user object is loaded and contains a name
+  const username = user?.name || "Guest"; // Fallback to "Guest" if name is undefined
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.textHeader}>User's profile</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Setting")} style={styles.icon}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Setting")}
+          style={styles.icon}
+        >
           <Ionicons name="ellipsis-horizontal-outline" size={32} color="#000" />
         </TouchableOpacity>
       </View>
