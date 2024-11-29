@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StatsGroup from "./Statistical";
 // import * as ImagePicker from "expo-image-picker";
@@ -11,6 +11,8 @@ import { RootStackParamList } from "../../../navigation/types";
 // import { storage } from "../../../../constants/firebaseConfig"; // Import từ file config
 
 import { useSelector } from "react-redux";
+
+import HistoryByCourse from "./HistoryByCourse";
 
 const User: React.FC = () => {
   const navigation = useNavigation<RootStackParamList>();
@@ -119,6 +121,11 @@ const User: React.FC = () => {
         <View>
           <Text>History buy course</Text>
         </View>
+      </View>
+      <View style={styles.container}>
+        <ScrollView>
+          <HistoryByCourse />
+        </ScrollView>
       </View>
     </View>
   );

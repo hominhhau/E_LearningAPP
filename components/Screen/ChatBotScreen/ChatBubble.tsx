@@ -32,7 +32,7 @@ const ChatBubble: React.FC = () => {
       return;
     }
     const response = await API_Chatgpt.getChatgpt(message);
-    console.log(response);
+    console.log("kết quả của chat gpt", response);
     setBotResponse(response.choices[0].message.content);
     setMessages((prevMessages) => [
       ...prevMessages,

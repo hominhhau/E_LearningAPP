@@ -38,6 +38,15 @@ export const Api_Course = {
         console.log('Api_Course.getLessonsByCourse', courseID);
         return ApiManager.post('/getLessonsByCourse', { courseID });
     },
+    // enrollCourse
+    enrollCourse: async (data) => {
+        return ApiManager.post('/enrolled-courses', data);
+    },
+
+    ///enrolled-courses
+    getEnrolledCourses: async (data) => {
+        return ApiManager.post('/enrolled-courses', data);
+    },
 
 
 }
