@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import CoursePopular from "@/components/Screen/Main-Screens/Home/PopularCourses/Courses";
 import { Api_Course } from "@/apis/Api_Course";
@@ -29,46 +29,38 @@ type CourseType = {
 const RecommendedForYouComponent: React.FC = () => {
   const user = useSelector((state: any) => state.user.user);
   const navigation = useNavigation<NavigationProp>();
-  const [recommendedCourses, setRecommendedCourses] = useState<CourseType[]>(
-    []
-  );
+  const [recommendedCourses, setRecommendedCourses] = useState<CourseType[]>([]);
   const userId = user?.userID;
-  useEffect(() => {
-    const fetchRecommendedCourses = async () => {
-      try {
-        // const userId = "1732454183558"; // Replace with actual user ID
-        const response = await Api_Course.getUnenrolledCourses({ userId });
 
-        if (response?.success && response.unenrolledCourses) {
-          const mappedCourses = response.unenrolledCourses.map(
-            (course: any) => {
-              return {
-                id: course._id,
-                imageCourse: course.image?.url
-                  ? { uri: course.image.url }
-                  : { uri: "https://picsum.photos/200/300" },
-                titleCourse: course.name || "Unknown Course",
-                authorCourse: course.teacherID || "Unknown Author",
-                priceCourse: course.price ? `$${course.price}` : "Free",
-                titleStar: course.rating ? course.rating.toString() : "4.5",
-                numberLesson: course.lessons
-                  ? course.lessons.length.toString()
-                  : "0",
-                titleLesson: "Lessons",
-              };
-            }
-          );
-          setRecommendedCourses(mappedCourses);
-        } else {
-          console.error("Unexpected response structure:", response);
-        }
-      } catch (error) {
-        console.error("Error fetching recommended courses:", error);
+  const fetchRecommendedCourses = useCallback(async () => {
+    try {
+      const response = await Api_Course.getUnenrolledCourses({ userId });
+
+      if (response?.success && response.unenrolledCourses) {
+        const mappedCourses = response.unenrolledCourses.map((course: any) => ({
+          id: course._id,
+          imageCourse: course.image?.url ? { uri: course.image.url } : { uri: "https://picsum.photos/200/300" },
+          titleCourse: course.name || "Unknown Course",
+          authorCourse: course.teacherID || "Unknown Author",
+          priceCourse: course.price ? `$${course.price}` : "Free",
+          titleStar: course.rating ? course.rating.toString() : "4.5",
+          numberLesson: course.lessons ? course.lessons.length.toString() : "0",
+          titleLesson: "Lessons",
+        }));
+        setRecommendedCourses(mappedCourses);
+      } else {
+        console.error("Unexpected response structure:", response);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching recommended courses:", error);
+    }
+  }, [userId]);
 
-    fetchRecommendedCourses();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchRecommendedCourses();
+    }, [fetchRecommendedCourses])
+  );
 
   return (
     <View style={styles.container}>
