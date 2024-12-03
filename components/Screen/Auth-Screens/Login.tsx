@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/slices/userSlices"; // Đường dẫn tới userSlice
@@ -14,7 +14,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
   // Lấy tham số từ navigation để kiểm tra xem có cần reset mật khẩu không
-  const route = useRoute<RouteProp<any, 'Login'>>();
+  const route = useRoute<RouteProp<any, "Login">>();
   useEffect(() => {
     if (route.params?.resetPassword) {
       setPassword(""); // Reset mật khẩu nếu có tham số resetPassword
@@ -53,6 +53,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
           placeholder="Password"
           value={password}
           onChangeText={(text) => setPassword(text)}
+          isPassword={true} // Đặt isPassword để hiển thị tính năng ẩn/hiện
         />
       </View>
       <View style={styles.forgotPasswordContainer}>
@@ -69,14 +70,14 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
           onPress={handleLoginByPhone}
         />
       </View>
-      <View style={styles.orContainer}>
+      {/* <View style={styles.orContainer}>
         <Text style={styles.orText}>OR</Text>
         <Text style={styles.signUpWith}>Sign up with</Text>
         <TouchableOpacity style={styles.googleButton} onPress={() => {}}>
           <GoogleLogoIcon />
           <Text style={styles.googleButtonText}>Google</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

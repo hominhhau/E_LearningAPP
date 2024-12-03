@@ -10,22 +10,32 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import FindComponent from "./Search/FindComponent";
 import Category from "./Home/Categories/Categories";
+import CourseThatInspiresComponent from "./Search/CourseThatInspiresComponent";
+import Course from "../LearningLessonNoCart/EachTab/Overview/SimilarCourse/Course";
 
 const Search: React.FC = () => {
-  const [coursesFound, setCoursesFound] = useState(false); // State để kiểm tra có tìm thấy khóa học hay không
-  // Hàm callback để cập nhật khi tìm thấy khóa học
-  const handleCoursesFound = (found: boolean) => {
-    setCoursesFound(found); // Cập nhật trạng thái coursesFound
+  const [searchResults, setSearchResults] = useState<any[]>([]); // State lưu kết quả tìm kiếm
+  const handleSearchResults = (courses: any[]) => {
+    setSearchResults(courses); // Cập nhật kết quả tìm kiếm
   };
   return (
     <View style={styles.container}>
-      <FindComponent onCoursesFound={handleCoursesFound} />
+      <FindComponent onSearchResults={handleSearchResults} />
 
+      {/* <ScrollView style={styles.courseContainer}>
+          <CourseThatInspiresComponent searchResults={searchResults}  />
+      </ScrollView> */}
+      {/* Hiển thị kết quả tìm kiếm */}
       <ScrollView style={styles.courseContainer}>
-        
-        {/* <View>
-          <CourseThatInspiresComponent />
-        </View> */}
+        {searchResults.length > 0 ? (
+          <CourseThatInspiresComponent searchResults={searchResults} />
+        ) : (
+          <View style={styles.noResultsContainer}>
+            <Text style={styles.noResultsText}>
+              No courses found. Try searching for something else!
+            </Text>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -57,6 +67,15 @@ const styles = StyleSheet.create({
   },
   courseContainer: {
     flex: 1,
+  },
+  noResultsContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+  noResultsText: {
+    fontSize: 16,
+    color: "#B0B0B0",
   },
 });
 

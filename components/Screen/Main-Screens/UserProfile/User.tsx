@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import StatsGroup from "./Statistical";
 // import * as ImagePicker from "expo-image-picker";
@@ -103,24 +110,24 @@ const User: React.FC = () => {
             source={
               avatar
                 ? { uri: avatar }
-                : require("../../../../assets/images/defaultAvatar.png") // Avatar mặc định
+                : require("../../../../assets/images/LogoE-LEARNING_1.png") // Avatar mặc định
             }
             style={styles.avatar}
           />
         </TouchableOpacity>
         <Text style={styles.textName}>{username}</Text>
 
-        <View style={styles.statisticalContainer}>
+        {/* <View style={styles.statisticalContainer}>
           <StatsGroup stats={stats} />
-        </View>
+        </View> */}
 
-        <View>
+        {/* <View>
           <Text>Saved course</Text>
         </View>
 
         <View>
           <Text>History buy course</Text>
-        </View>
+        </View> */}
       </View>
       <View style={styles.container}>
         <ScrollView>

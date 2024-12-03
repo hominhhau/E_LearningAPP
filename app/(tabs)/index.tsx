@@ -33,6 +33,8 @@ import Legal from "@/components/Screen/Setting-Screens/Legal";
 import HelpAndSupport from "@/components/Screen/Setting-Screens/HelpAndSupport";
 import PaymentWebView from "@/components/Screen/Cart/PaymentWebView";
 import Cart from "@/components/Screen/Cart/Cart";
+import ChangePassword from "@/components/Screen/Auth-Screens/ChangePassword";
+import Userprofile from "@/components/Screen/Main-Screens/UserProfile/User";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -100,9 +102,7 @@ export default function App() {
           />
           <Stack.Screen
             name="CoursesProcessComponent"
-            component={(props: any) => (
-              <CoursesProcessComponent {...props} activeTab="ALL" />
-            )}
+            component={CoursesProcessComponentWrapper}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -112,7 +112,7 @@ export default function App() {
           />
           <Stack.Screen
             name="LessonNoCart"
-            component={(props: any) => <LessonNoCart {...props} />}
+            component={LessonNoCartWrapper}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -155,6 +155,16 @@ export default function App() {
             component={Cart}
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="ChangePassword"
+            component={ChangePassword}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Userprofile"
+            component={Userprofile}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
@@ -164,7 +174,7 @@ export default function App() {
 function MainTabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeTab"
       screenOptions={{
         tabBarActiveTintColor: "#00BDD6",
         tabBarInactiveTintColor: "gray",
@@ -172,7 +182,7 @@ function MainTabNavigator() {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -210,3 +220,11 @@ function MainTabNavigator() {
     </Tab.Navigator>
   );
 }
+
+const LessonNoCartWrapper = (props: any) => {
+  return <LessonNoCart {...props} />;
+};
+
+const CoursesProcessComponentWrapper = (props: any) => {
+  return <CoursesProcessComponent {...props} activeTab="ALL" />;
+};

@@ -1,42 +1,63 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, View, Text, StyleSheet, TextInput, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Api_Search } from "../../../../apis/Api_Search"
+import React, { useState } from "react";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Alert,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Api_Search } from "../../../../apis/Api_Search";
 
-
-interface FindComponentProps {
-  onCoursesFound: (found: boolean) => void; // Callback nhận trạng thái tìm thấy khóa học
-}
-
-const FindComponent: React.FC<FindComponentProps> = ({ onCoursesFound }) => {
-  const [keyword, setKeyword] = useState(''); // State lưu giá trị tìm kiếm
+const FindComponent: React.FC<{
+  onSearchResults: (courses: any[]) => void;
+}> = ({ onSearchResults }) => {
+  const [keyword, setKeyword] = useState(""); // State lưu giá trị tìm kiếm
   const [loading, setLoading] = useState(false); // State kiểm tra trạng thái loading
 
-   // Hàm xử lý tìm kiếm
-   const handleSearch = async () => {
-    if (keyword.trim() === '') {
-      Alert.alert('Error', 'Please enter a search term');
+  // Hàm xử lý tìm kiếm
+  const handleSearch = async () => {
+    if (keyword.trim() === "") {
+      Alert.alert("Error", "Please enter a search term");
       return;
     }
 
     setLoading(true);
 
     try {
-      const courses = await Api_Search.searchCourses(keyword); // Gọi API tìm khóa học
-      console.log("abcabc" ,courses)
-      console.log('Is Array:', Array.isArray(courses)); // Kiểm tra nếu là mảng
-      console.log('Courses Length:', courses.length); // Kiểm tra độ dài mảng
+      const response = await Api_Search.searchCourses(keyword); // Gọi API tìm khóa học
 
+      console.log("Search Response:", response);
 
-      if (Array.isArray(courses) && courses.length > 0) {
-        console.log('Found courses:', courses); // Xử lý kết quả tìm kiếm
+      if (response && Array.isArray(response)) {
+        const courses = response.map((course: any) => ({
+          id: course._id,
+          imageCourse: course.image?.url
+            ? { uri: course.image.url }
+            : { uri: "https://picsum.photos/200/300" },
+          nameCourse: course.name || "Unknown Course",
+          nameTeacher: course.teacherID || "Unknown Teacher",
+          price: course.price || 0,
+          textIcon: course.rating ? course.rating.toString() : "4.5",
+          textIconLesson: course.lessons
+            ? `${course.lessons.length} Lessons`
+            : "0 Lessons",
+        }));
 
+        console.log("Mapped Courses:", courses);
+
+        if (courses.length > 0) {
+          onSearchResults(courses); // Gửi kết quả tìm kiếm ra ngoài
+        } else {
+          Alert.alert("No Results", "No courses found for your search");
+        }
       } else {
-        Alert.alert('No Results', 'No courses found for your search');
+        Alert.alert("No Results", "No courses found for your search");
       }
     } catch (error) {
-      console.error('Error searching courses:', error);
-      Alert.alert('Error', 'There was an issue searching for courses');
+      console.error("Error searching courses:", error);
+      Alert.alert("Error", "There was an issue searching for courses");
     } finally {
       setLoading(false);
     }
@@ -45,7 +66,12 @@ const FindComponent: React.FC<FindComponentProps> = ({ onCoursesFound }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchSection}>
-        <Ionicons name="search" size={20} color="black" style={styles.searchIcon} />
+        <Ionicons
+          name="search"
+          size={20}
+          color="black"
+          style={styles.searchIcon}
+        />
         <TextInput
           style={styles.input}
           placeholder="Search course"
@@ -55,12 +81,12 @@ const FindComponent: React.FC<FindComponentProps> = ({ onCoursesFound }) => {
         />
       </View>
 
-      <TouchableOpacity 
-      style={styles.filterButton}
-      onPress={handleSearch}
-      disabled={loading}
+      <TouchableOpacity
+        style={styles.filterButton}
+        onPress={handleSearch}
+        disabled={loading}
       >
-          <View style={styles.filterContent}>
+        <View style={styles.filterContent}>
           {loading ? (
             <Text style={styles.filterText}>Searching...</Text> // Hiển thị khi đang tìm kiếm
           ) : (
@@ -77,16 +103,16 @@ const FindComponent: React.FC<FindComponentProps> = ({ onCoursesFound }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     padding: 10,
-    backgroundColor: '#F7F7F7',
+    backgroundColor: "#F7F7F7",
   },
   searchSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#F7F7F7',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F7F7F7",
     borderRadius: 8,
     flex: 1,
     marginRight: 10,
@@ -99,22 +125,22 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: '#000',
+    color: "#000",
   },
   filterButton: {
-    backgroundColor: '#00C2D8',
+    backgroundColor: "#00C2D8",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
   },
   filterContent: {
-    flexDirection: 'row',
-    alignItems: 'center', // Ensures icon and text are centered vertically
+    flexDirection: "row",
+    alignItems: "center",
   },
   filterText: {
-    color: '#fff',
-    fontWeight: '600',
-    marginLeft: 5, // Adds some space between the icon and text
+    color: "#fff",
+    fontWeight: "600",
+    marginLeft: 5,
   },
 });
 
