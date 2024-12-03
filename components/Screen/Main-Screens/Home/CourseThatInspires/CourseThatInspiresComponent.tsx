@@ -32,12 +32,16 @@ const CourseThatInspiresComponent: React.FC = () => {
       if (response?.success && response.unenrolledCourses) {
         const mappedCourses = response.unenrolledCourses.map((course: any) => ({
           id: course._id,
-          imageCourse: course.image?.url ? { uri: course.image.url } : { uri: "https://picsum.photos/200/300" },
+          imageCourse: course.image?.url
+            ? { uri: course.image.url }
+            : { uri: "https://picsum.photos/200/300" },
           nameCourse: course.name || "Unknown Course",
           nameTeacher: course.teacherID || "Unknown Teacher",
           price: course.price || 0,
           textIcon: course.rating ? course.rating.toString() : "4.5",
-          textIconLesson: course.lessons ? `${course.lessons.length} Lessons` : "0 Lessons",
+          textIconLesson: course.lessons
+            ? `${course.lessons.length} Lessons`
+            : "0 Lessons",
         }));
         setCoursesData(mappedCourses);
       } else {
@@ -58,9 +62,9 @@ const CourseThatInspiresComponent: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Course that inspires</Text>
-        <TouchableOpacity onPress={() => console.log("View more Pressed")}>
+        {/* <TouchableOpacity onPress={() => console.log("View more Pressed")}>
           <Text style={styles.viewMore}>View more</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       {coursesData.map((course) => (

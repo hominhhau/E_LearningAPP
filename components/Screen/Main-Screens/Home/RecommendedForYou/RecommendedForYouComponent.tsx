@@ -29,7 +29,9 @@ type CourseType = {
 const RecommendedForYouComponent: React.FC = () => {
   const user = useSelector((state: any) => state.user.user);
   const navigation = useNavigation<NavigationProp>();
-  const [recommendedCourses, setRecommendedCourses] = useState<CourseType[]>([]);
+  const [recommendedCourses, setRecommendedCourses] = useState<CourseType[]>(
+    []
+  );
   const userId = user?.userID;
 
   const fetchRecommendedCourses = useCallback(async () => {
@@ -39,7 +41,9 @@ const RecommendedForYouComponent: React.FC = () => {
       if (response?.success && response.unenrolledCourses) {
         const mappedCourses = response.unenrolledCourses.map((course: any) => ({
           id: course._id,
-          imageCourse: course.image?.url ? { uri: course.image.url } : { uri: "https://picsum.photos/200/300" },
+          imageCourse: course.image?.url
+            ? { uri: course.image.url }
+            : { uri: "https://picsum.photos/200/300" },
           titleCourse: course.name || "Unknown Course",
           authorCourse: course.teacherID || "Unknown Author",
           priceCourse: course.price ? `$${course.price}` : "Free",
@@ -66,9 +70,9 @@ const RecommendedForYouComponent: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Recommended for you</Text>
-        <TouchableOpacity onPress={() => console.log("View more Pressed")}>
+        {/* <TouchableOpacity onPress={() => console.log("View more Pressed")}>
           <Text style={styles.viewMore}>View more</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <ScrollView
         horizontal

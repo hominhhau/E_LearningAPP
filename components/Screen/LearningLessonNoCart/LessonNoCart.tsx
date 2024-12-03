@@ -19,17 +19,18 @@ import { WebView } from "react-native-webview";
 import AddToCart from "@/components/Button/AddToCart";
 import ReviewFinal from "./EachTab/ReviewFinal";
 
-import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '@/components/navigation/types';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from "@react-navigation/native";
+import { RootStackParamList } from "@/components/navigation/types";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
+type LessonNoCartRouteProp = RouteProp<RootStackParamList, "LessonNoCart">;
 
-type LessonNoCartRouteProp = RouteProp<RootStackParamList, 'LessonNoCart'>;
+const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({
+  route,
+}) => {
+  const { nameCourse, price, id } = route.params;
 
-const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({ route }) => {
-  const { nameCourse, price, id }  = route.params;
-  
   const [activeTab, setActiveTab] = useState("OVERVIEW");
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null); // Thay đổi kiểu dữ liệu
   //const videoRef = useRef<Video>(null);
@@ -47,7 +48,7 @@ const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({ route }) => 
           onBackPress={() => navigation.goBack()}
           onBookmarkPress={() => {}}
           onMorePress={() => {}}
-          titleHeader="UX Foundation"
+          titleHeader="Course"
         />
       </View>
 
@@ -94,13 +95,13 @@ const LessonNoCart: React.FC<{ route: LessonNoCartRouteProp }> = ({ route }) => 
           discountPrice="80% off"
           onPress={() => {
             // Chuyển đến màn hình giỏ hàng và truyền khóa học
-            navigation.navigate('Cart', {
-              cartItem:{
+            navigation.navigate("Cart", {
+              cartItem: {
                 id: id,
                 title: nameCourse,
                 price: price,
                 imageUrl: "https://picsum.photos/200/300?grayscale",
-              }
+              },
             });
           }}
         />
@@ -130,21 +131,21 @@ const styles = StyleSheet.create({
   },
   content: {},
   lesson: {},
-  cartComponent:{
+  cartComponent: {
     // position: 'absolute',
     // bottom: 0,
     // right: 0,  // Đặt nút ở bên phải
-     padding: 10,
+    padding: 10,
     // backgroundColor: '#ffffff',
     // borderTopWidth: 1,
     // borderTopColor: '#e0e0e0',
     // alignItems: 'flex-end',  // Đảm bảo nút "Add to Cart" nằm bên phải
     // width: '100%',
   },
-  titleCourse:{
+  titleCourse: {
     fontSize: 20,
-    fontWeight: 'bold',
-  }
+    fontWeight: "bold",
+  },
 });
 
 export default LessonNoCart;

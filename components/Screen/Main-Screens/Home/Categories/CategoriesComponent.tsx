@@ -33,9 +33,9 @@ const CategoryComponent: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Categories</Text>
-        <TouchableOpacity onPress={() => console.log("View more Pressed")}>
+        {/* <TouchableOpacity onPress={() => console.log("View more Pressed")}>
           <Text style={styles.viewMore}>View more</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={styles.columnContainer}>
         {categories.map((category, index) => (

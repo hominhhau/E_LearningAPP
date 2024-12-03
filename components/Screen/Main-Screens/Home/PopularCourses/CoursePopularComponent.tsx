@@ -45,7 +45,10 @@ const CoursePopularComponent: React.FC = () => {
           titleStar: course.rating ? course.rating.toString() : "4.5",
           numberLesson: course.lessons ? course.lessons.length.toString() : "0",
           titleLesson: "Lessons",
-          imageCourse: course.image.uri && course.image.url ? { uri: course.image.url } : { uri: "https://picsum.photos/200/300" },
+          imageCourse:
+            course.image.uri && course.image.url
+              ? { uri: course.image.url }
+              : { uri: "https://picsum.photos/200/300" },
         }));
         setUnenrolledCourses(mappedCourses);
       } else {
@@ -66,9 +69,9 @@ const CoursePopularComponent: React.FC = () => {
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Popular Course</Text>
-        <TouchableOpacity onPress={() => console.log("View more Pressed")}>
+        {/* <TouchableOpacity onPress={() => console.log("View more Pressed")}>
           <Text style={styles.viewMore}>View more</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <ScrollView
         horizontal

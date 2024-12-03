@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   TouchableOpacity,
   View,
@@ -8,80 +8,27 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import StatsGroup from "./Statistical";
-// import * as ImagePicker from "expo-image-picker";
-// import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { RootStackParamList } from "../../../navigation/types";
-
-// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-// import { storage } from "../../../../constants/firebaseConfig"; // Import từ file config
-
 import { useSelector } from "react-redux";
-
 import HistoryByCourse from "./HistoryByCourse";
 
 const User: React.FC = () => {
   const navigation = useNavigation<RootStackParamList>();
   const [avatar, setAvatar] = useState<string | null>(null);
-  const [name, setName] = useState<string | null>(null); //truyen do
-  const [uploading, setUploading] = useState(false);
-
-  const stats = [
-    { label: "Save", value: 25 },
-    { label: "On Going", value: 24 },
-    { label: "Completed", value: 2 },
-  ];
-
-  // const pickImage = async () => {
-  //   const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-  //   if (!permissionResult.granted) {
-  //     alert("Bạn cần cho phép quyền truy cập để tải hình lên!");
-  //     return;
-  //   }
-
-  // let result = await ImagePicker.launchImageLibraryAsync({
-  //   mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  //   allowsEditing: true,
-  //   aspect: [1, 1],
-  //   quality: 1,
-  // });
-
-  //   if (!result.canceled) {
-  //     const imageUri = result.assets[0].uri;
-  //     setAvatar(imageUri); // Hiển thị ảnh tạm thời
-  //     await uploadImageToFirebase(imageUri); // Upload ảnh lên Firebase
-  //   }
-  // };
-
-  // const uploadImageToFirebase = async (uri: string) => {
-  //   setUploading(true);
-
-  //   try {
-  //     const response = await fetch(uri);
-  //     const blob = await response.blob();
-  //     const filename = uri.substring(uri.lastIndexOf("/") + 1);
-
-  //     const storageRef = ref(storage, `avatars/${filename}`);
-  //     const snapshot = await uploadBytes(storageRef, blob);
-  //     const downloadURL = await getDownloadURL(snapshot.ref);
-
-  //     setAvatar(downloadURL);
-  //     alert("Upload thành công!");
-  //     console.log("Image URL:", downloadURL);
-  //   } catch (error) {
-  //     console.error("Upload failed:", error); // Hiển thị chi tiết lỗi trong console
-  //     alert("Có lỗi xảy ra khi upload ảnh. Xem chi tiết trong console.");
-  //   } finally {
-  //     setUploading(false);
-  //   }
-  // };
-
-  // Lấy `name` từ Redux Store
   const user = useSelector((state: any) => state.user.user);
+  const username = user?.name || "Guest";
 
-  // Ensure the user object is loaded and contains a name
-  const username = user?.name || "Guest"; // Fallback to "Guest" if name is undefined
+  const reloadUserData = useCallback(() => {
+    console.log("Reloading user data...");
+    // Add your data fetching or refreshing logic here
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      reloadUserData();
+    }, [reloadUserData])
+  );
 
   return (
     <View style={styles.container}>
@@ -98,36 +45,24 @@ const User: React.FC = () => {
       <View style={styles.profileContainer}>
         <View style={styles.imgContainer}>
           <Image
-            source={require("../../../../assets/images/AnhBia.png")} // Ảnh nền mặc định không thay đổi
+            source={require("../../../../assets/images/AnhBia.png")}
             style={styles.imgBia}
           />
         </View>
         <TouchableOpacity
-          onPress={() => console.log("sfsdfd")}
+          onPress={() => console.log("Avatar pressed")}
           style={styles.avatarContainer}
         >
           <Image
             source={
               avatar
                 ? { uri: avatar }
-                : require("../../../../assets/images/LogoE-LEARNING_1.png") // Avatar mặc định
+                : require("../../../../assets/images/LogoE-LEARNING_1.png")
             }
             style={styles.avatar}
           />
         </TouchableOpacity>
         <Text style={styles.textName}>{username}</Text>
-
-        {/* <View style={styles.statisticalContainer}>
-          <StatsGroup stats={stats} />
-        </View> */}
-
-        {/* <View>
-          <Text>Saved course</Text>
-        </View>
-
-        <View>
-          <Text>History buy course</Text>
-        </View> */}
       </View>
       <View style={styles.container}>
         <ScrollView>
@@ -150,7 +85,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "relative",
     paddingBottom: 16,
-    //backgroundColor: "pink",
   },
   textHeader: {
     fontSize: 24,
@@ -194,12 +128,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginTop: 16,
-  },
-  statisticalContainer: {
-    flexDirection: "row",
-    marginTop: 16,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 

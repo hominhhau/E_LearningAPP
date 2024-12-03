@@ -42,7 +42,7 @@ const LessonCart: React.FC = () => {
           }}
           onBookmarkPress={() => {}}
           onMorePress={() => {}}
-          titleHeader="UX Foundation"
+          titleHeader="Course"
         />
       </View>
 
@@ -59,23 +59,22 @@ const LessonCart: React.FC = () => {
           />
         )} */}
         {!selectedVideo ? ( // Hiển thị ảnh nếu chưa chọn video
-    <Image
-      source={{ uri: "https://picsum.photos/seed/picsum/200/300" }} // Thay bằng link ảnh mặc định
-      style={{ width: "100%", height: 250 }}
-      resizeMode="cover"
-    />
-  ) : (
-    <WebView
-      key={selectedVideo}
-      source={{ uri: selectedVideo }}
-      style={{ height: 200 }}
-      javaScriptEnabled={true}
-      domStorageEnabled={true}
-      startInLoadingState={true}
-      allowsFullscreenVideo={true}
-    />
-  )}
-
+          <Image
+            source={{ uri: "https://picsum.photos/seed/picsum/200/300" }} // Thay bằng link ảnh mặc định
+            style={{ width: "100%", height: 250 }}
+            resizeMode="cover"
+          />
+        ) : (
+          <WebView
+            key={selectedVideo}
+            source={{ uri: selectedVideo }}
+            style={{ height: 200 }}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            startInLoadingState={true}
+            allowsFullscreenVideo={true}
+          />
+        )}
       </View>
 
       <View style={styles.courseInfoContainer}>
@@ -133,7 +132,6 @@ const styles = StyleSheet.create({
   titleCourse: {
     fontSize: 20,
     fontWeight: "bold",
-
   },
 });
 

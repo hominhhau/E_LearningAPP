@@ -35,11 +35,11 @@ const LessonItem: React.FC<LessonProps> = ({
           <Text style={styles.duration}>{duration}</Text>
         </View>
         <TouchableOpacity onPress={() => setCompleted(!completed)}>
-          <Ionicons
+          {/* <Ionicons
             name={completed ? "checkmark" : "lock-closed"}
             size={20}
             color={completed ? "#007AFF" : "#A0A0A0"}
-          />
+          /> */}
         </TouchableOpacity>
       </TouchableOpacity>
     </View>

@@ -191,15 +191,6 @@ function MainTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="MyCourse"
-        component={MyCourse}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="book-outline" size={size} color={color} />
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Search"
         component={Search}
         options={{
@@ -208,6 +199,16 @@ function MainTabNavigator() {
           ),
         }}
       />
+      <Tab.Screen
+        name="MyCourse"
+        component={MyCourse}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="book-outline" size={size} color={color} />
+          ),
+        }}
+      />
+
       <Tab.Screen
         name="Profile"
         component={User}
