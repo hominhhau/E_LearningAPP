@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 // http://192.168.1.100:6002
-const BASE_URL = 'http://192.168.1.7:6002';
+const BASE_URL = 'https://elearning-aghscra5h0ghfnfm.southeastasia-01.azurewebsites.net';
 
 // Tạo một instance Axios với cấu hình mặc định
 const axiosInstance = axios.create({
